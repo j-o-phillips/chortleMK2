@@ -18,12 +18,14 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthProvider>
           <UserProvider>
-            <div>
-              <Navbar />
+            <div className="main-container">
+              <div className="navbar">
+                <Navbar />
+              </div>
               <SideBar />
               {children}
             </div>
-            </UserProvider>
+          </UserProvider>
         </AuthProvider>
       </body>
     </html>
