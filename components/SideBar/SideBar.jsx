@@ -1,4 +1,3 @@
-
 function SideBar() {
   return (
     <div style={{  height: "100%", backgroundColor: "lightgrey", top: 0, left: 0, overflowY: "auto", transition: "0.3s" }}>
@@ -15,7 +14,17 @@ function SideBar() {
 }
 
 const NavItem = ({ icon, label }) => (
-  <div style={{ marginTop: "20px", marginBottom: "10px", backgroundColor: "beige", borderRadius: "5px", padding: "10px", display: "flex", alignItems: "center" }}>
+  <div
+    style={{
+      marginTop: "20px",
+      marginBottom: "10px",
+      backgroundColor: "beige",
+      borderRadius: "5px",
+      padding: "10px",
+      display: "flex",
+      alignItems: "center",
+    }}
+  >
     <span style={{ marginRight: "10px" }}>{icon}</span>
     <span>{label}</span>
   </div>

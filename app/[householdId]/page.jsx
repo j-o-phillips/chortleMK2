@@ -1,5 +1,5 @@
 "use client";
-import LogOutBtn from "@/components/LogOutBtn/LogOutBtn";
+
 import React from "react";
 
 function Dashboard() {

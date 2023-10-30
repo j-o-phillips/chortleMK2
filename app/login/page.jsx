@@ -4,10 +4,12 @@ import styles from "./page.module.css";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import LoginBtn from "@/components/LoginBtn/LoginBtn";
+import { useContext } from "react";
 
 function Login() {
   const session = useSession();
   const router = useRouter();
+  const { userId, setUserId } = useContext();
 
   async function createUser() {
     if (session.status === "authenticated") {
@@ -25,9 +27,10 @@ function Login() {
           },
           body: JSON.stringify(data),
         });
-
+        const response = await res.json();
+        console.log(response);
         if (res.ok) {
-          router.push("/dashboard");
+          router.push(response.redirect);
         } else {
           throw new Error("Failed to create a user");
         }

@@ -9,9 +9,35 @@ export async function POST(req) {
   await connectMongoDB();
   const user = await User.find({ email: email });
 
-  if (user.length)
-    return NextResponse.json({ message: "User email already exists" });
+  if (!user[0]) {
+    //If the user doesn't exist
+    const user = await User.create({ name, email, imgURL, households });
+    return NextResponse.json(
+      { message: "User Created", redirect: "/createHousehold", user: user },
+      { status: 201 }
+    );
+  }
 
-  await User.create({ name, email, imgURL, households });
-  return NextResponse.json({ message: "User Created" }, { status: 201 });
+  if (user[0]) {
+    //if the user exists but their houshold array is empty
+    if (!user[0].households.length)
+      return NextResponse.json(
+        {
+          message: "User exists, create a household",
+          redirect: "/createHousehold",
+          user: user[0],
+        },
+        { status: 200 }
+      );
+
+    //the user exists and already has atleast one household
+    return NextResponse.json(
+      {
+        message: "User email already exists",
+        redirect: "/createChore",
+        user: user[0],
+      },
+      { status: 200 }
+    );
+  }
 }

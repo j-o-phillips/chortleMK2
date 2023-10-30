@@ -2,7 +2,6 @@ import LogOutBtn from "../LogOutBtn/LogOutBtn";
 import style from "./Navbar.module.css"
 
 function Navbar() {
-
   return (
       <nav className={style.nav}>
         <div>
