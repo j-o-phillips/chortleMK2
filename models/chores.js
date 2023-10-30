@@ -15,6 +15,6 @@ const choreSchema = new Schema(
   }
 );
 
-const Chore = mongoose.model("Chore", choreSchema);
+const Chore = mongoose.models.Chore || mongoose.model("Chore", choreSchema);
 
 export { Chore, choreSchema };
