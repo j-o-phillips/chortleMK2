@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
               <SideBar />
               {children}
             </div>
-          </UserProvider>
+            </UserProvider>
         </AuthProvider>
       </body>
     </html>
