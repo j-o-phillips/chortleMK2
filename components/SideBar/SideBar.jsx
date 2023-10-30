@@ -17,7 +17,7 @@ function SideBar() {
 }
 
 const NavItem = ({ icon, label }) => (
-  <div style={{ marginBottom: "10px", backgroundColor: "beige", borderRadius: "5px", padding: "10px", display: "flex", alignItems: "center" }}>
+  <div style={{ marginTop: "20px", marginBottom: "10px", backgroundColor: "beige", borderRadius: "5px", padding: "10px", display: "flex", alignItems: "center" }}>
     <span style={{ marginRight: "10px" }}>{icon}</span>
     <span>{label}</span>
   </div>
