@@ -1,0 +1,18 @@
+.nav {
+    top: 0;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.logo {
+    margin-left: 50px;
+}
+.end {
+    display: inline-flex;
+}
+.button {
+    border: 1px solid black;
+    margin-left: 10px;
+}

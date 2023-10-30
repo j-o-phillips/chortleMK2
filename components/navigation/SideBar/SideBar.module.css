@@ -1,0 +1,19 @@
+.sidebar {
+    width: 180px;
+    height: 100vh;
+    background-color: lightgrey;
+    overflow: auto;
+    transition: 0.3s;
+}
+
+.icons {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 25px;
+    left: 13px;
+    color: #888;
+}
