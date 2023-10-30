@@ -42,7 +42,6 @@ function Login() {
   return (
     <div className={styles.container}>
       <LoginBtn />
-      <LogOutBtn />
     </div>
   );
 }
