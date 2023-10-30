@@ -26,14 +26,8 @@ div.main-container {
 
 div.navbar {
   grid-column: 1 / span 2;
-  grid-row: 0 / 1;
+  grid-row:  1 / span 2;
   border: 1px solid black;
 }
 
-div.sidebar {
- 
-}
-
-div.children {
-}
 
