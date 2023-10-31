@@ -20,4 +20,6 @@ div.main-container {
   display: grid;
   height: 90vh;
   grid-template-columns: 1fr 3fr;
+  background-color: #EDC6B1;
 }
+

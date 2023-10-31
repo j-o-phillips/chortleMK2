@@ -3,12 +3,17 @@
 // import { useContext } from "react";
 import LogOutBtn from "../LogOutBtn/LogOutBtn";
 import style from "./Navbar.module.css";
+
 // import { UserContext } from "@/context/UserContext";
+
+import Image from "next/image";
+
 import { useSession } from "next-auth/react";
 
 function Navbar() {
   // const { user } = useContext(UserContext);
   const session = useSession();
+
 
   return (
     <nav className={style.nav}>
@@ -24,6 +29,7 @@ function Navbar() {
           <LogOutBtn />
         </div>
       )}
+
     </nav>
   );
 }
