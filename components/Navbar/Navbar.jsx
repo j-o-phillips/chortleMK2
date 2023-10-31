@@ -6,15 +6,14 @@ import { useSession } from "next-auth/react";
 function Navbar() {
 const session = useSession()
   return (
-      <nav className={style.nav}>
-        <div className="navbar-right">
-          <Image width={20} height={20} src="" />
-          <div > Household Name </div>
-        </div >
-        <div className="navbar-right">
-          <p>{session.data.user.name}</p>
-          <Image width={20} height={20} src={session.data.user.image} />
+      <nav className={style.nav}> 
+          <div className={style.logo}>Image</div> 
+          <div className={style.end}>
+          <div> Household Name</div>
+        <button className={style.button}>
+          LogOut
           <LogOutBtn />
+        </button>
         </div>
       </nav>
   );

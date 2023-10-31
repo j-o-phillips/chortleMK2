@@ -1,11 +1,20 @@
-.nav{
+.nav {
+    top: 0;
+    background-color: lightgrey;
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px;
 }
 
-div.navbar-right {
-    flex-direction: column;
-
+.logo {
+    margin-left: 50px;
 }
 
+.end {
+    display: inline-flex;
+}
+
+.button {
+    border: 1px solid black;
+    margin-left: 10px;
+}
