@@ -1,8 +1,9 @@
 .sidebar {
     height: 90vh;
-    background-color: lightgrey;
+    background-color: #BFCCB5;
     overflow: auto;
     transition: 0.3s;
+    border-right: solid 10px #7C96AB ;
 }
 
 .icons {

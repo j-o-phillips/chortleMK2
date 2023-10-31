@@ -1,8 +1,10 @@
+
 "use client"
 import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import style from './page.module.css'
+
 
 function CreateChore() {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ function CreateChore() {
     deadline: "",
     assignees: [],
   });
+
 
   const [householdMembers, setHouseholdMembers] = useState([]);
 
@@ -71,15 +74,18 @@ function CreateChore() {
       const data = { ...formData, assignees: formData.assignees }
 
       const res = await fetch(`http://localhost:3000/api/household/chores`, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify(data),
       });
       console.log(data);
 
       if (res.status === 200) {
+
         console.log("Chore created successfully");
       } else {
         console.error("Error creating chore");
@@ -90,15 +96,18 @@ function CreateChore() {
   };
 
   return (
+
     <div className={style.page}>
       <h1 className={style.h1}>New Chore</h1>
       <div className={style.form}>
       <form onSubmit={handleCreateChore}>
         <input className={style.input}
+
           type="text"
           placeholder="Name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+
         /> <br/>
         <textarea className={style.textarea}
           type="text"
@@ -143,6 +152,7 @@ function CreateChore() {
         </form>
         </div>
         <button className={style.submit} type="submit">Create Chore</button>
+
     </div>
   );
 }
