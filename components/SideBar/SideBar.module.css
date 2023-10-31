@@ -1,5 +1,5 @@
 .sidebar {
-    height: 100vh;
+    height: 90vh;
     background-color: lightgrey;
     overflow: auto;
     transition: 0.3s;
@@ -12,7 +12,7 @@
 
 .copyright {
     position: absolute;
-    bottom: 25px;
+    bottom: 15px;
     left: 13px;
     color: #888;
 }
