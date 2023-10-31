@@ -1,4 +1,5 @@
 import { Card, Button } from "react-bootstrap";
+import style from './ChoreCard.module.css'
 
 function ChoreCard({ chore }) {
   //add modal with specific chore details to each chore card
@@ -16,6 +17,7 @@ function ChoreCard({ chore }) {
   }
 
   return (
+    <div className={style.card}>
     <Card className="card">
       {/* <div><h3>{chore.title}</h3></div> */}
       <div><h3>Title</h3></div>
@@ -35,6 +37,7 @@ function ChoreCard({ chore }) {
       <div><Button className="d-button">See details</Button>
       <Button className="c-button">Check as done</Button></div>
     </Card>
+    </div>
   )
 }
 export default ChoreCard;
