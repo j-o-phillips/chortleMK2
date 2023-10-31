@@ -1,14 +1,18 @@
 import style from './SideBar.module.css'
 function SideBar() {
   return (
-    <div className={style.sidebar}>
-      <div className={style.icons}>
+    <div className={style.container}>
+      <div className={style.sidebar}>
+        <div className={style.icons}>
           <NavItem icon="🏠" label="Home" />
           <NavItem icon="📊" label="Analytics" />
           <NavItem icon="⚙️" label="Settings" />
+        </div>
+        <div className={style.copyright}>
+          &copy; 2023 Chores App
+        </div>
       </div>
-      <div className={style.copyright}>
-        &copy; 2023 Chores App
+      <div className={style.content}>
       </div>
     </div>
   );
