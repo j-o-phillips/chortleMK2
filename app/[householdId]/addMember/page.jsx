@@ -5,38 +5,36 @@ import { UserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
 function AddMember() {
-  const [householdName, setHouseholdName] = useState("");
+  const [memberEmail, setMemberEmail] = useState("");
   const { user } = useContext(UserContext);
   const router = useRouter();
 
   async function AddMember(e) {
     e.preventDefault();
-    if (!householdName) {
-      alert("Household name required");
+    if (!memberEmail) {
+      alert("Email required");
       return;
     }
-
+    console.log(user);
     try {
-      const data = {
-        name: householdName,
-        user: user._id,
-      };
-
-      const res = await fetch("http://localhost:3000/api/household", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        `http://localhost:3000/api/household/${user.households[0]}/addMember`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ email: memberEmail }),
+        }
+      );
 
       if (res.ok) {
-        //get househild id from response
         const response = await res.json();
+        console.log(response);
         // await setHousehold(response.household);
-        router.push(`/${response.household._id}`);
+        // router.push(`/${response.household._id}`);
       } else {
-        throw new Error("Failed to create new household");
+        throw new Error("Failed to add a new member");
       }
     } catch (error) {
       console.log(error);
@@ -48,14 +46,14 @@ function AddMember() {
       <form onSubmit={AddMember}>
         <input
           className={styles.input}
-          type="text"
-          placeholder="name"
+          type="email"
+          placeholder="email"
           onChange={(e) => {
-            setHouseholdName(e.target.value);
+            setMemberEmail(e.target.value);
           }}
         />
 
-        <button className={styles.button}>Create Household</button>
+        <button className={styles.button}>Add New Member</button>
       </form>
     </div>
   );
