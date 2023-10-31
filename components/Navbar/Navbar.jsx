@@ -1,33 +1,31 @@
-"use client"
+"use client";
 
+import { useContext, useEffect } from "react";
 import LogOutBtn from "../LogOutBtn/LogOutBtn";
-import style from "./Navbar.module.css"
-import { useContext, useState } from "react";
+import style from "./Navbar.module.css";
+// import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { UserContext } from "@/context/UserContext";
-import Image from "next/image";
-
 
 function Navbar() {
-  const user = useContext(UserContext)
+  const session = useSession();
+  const { user } = useContext(UserContext);
 
-  if (!user) {
-    return null
-  }
-  
-  console.log(user)
-  
-    return (
-      <nav className={style.nav}> 
-          <div className={style.logo}>Image</div> 
-          {/* <Image src={user.image} height={10} width={10} alt="profile pic"></Image> */}
-          <p>{user.name}</p>
-          <div></div>
-          <div className={style.end}>
-            <div> Household Name</div>
-            {/* logout button only appear if you are logged in */}
-            <LogOutBtn />
-        </div>
-      </nav>
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  return (
+    <nav className={style.nav}>
+      <div className={style.logo}>Image</div>
+      <div className={style.end}>
+        <div>{user}</div>
+        <button className={style.button}>
+          LogOut
+          <LogOutBtn />
+        </button>
+      </div>
+    </nav>
   );
 }
 

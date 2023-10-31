@@ -31,10 +31,15 @@ export async function POST(req) {
       );
 
     //the user exists and already has atleast one household
+    //the user may have been added by another user, so we must update the image and name
+    user[0].name = name;
+    user[0].imgURL = imgURL;
+    await user[0].save();
+
     return NextResponse.json(
       {
         message: "User email already exists",
-        redirect: "/createChore",
+        redirect: `/${user[0].households[0]}`,
         user: user[0],
       },
       { status: 200 }
