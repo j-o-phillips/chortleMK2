@@ -34,7 +34,7 @@ export async function POST(req) {
     return NextResponse.json(
       {
         message: "User email already exists",
-        redirect: "/createChore",
+        redirect: `/${user[0].households[0]}`,
         user: user[0],
       },
       { status: 200 }

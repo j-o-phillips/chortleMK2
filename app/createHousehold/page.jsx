@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 function CreateHousehold() {
   const [householdName, setHouseholdName] = useState("");
-  const { user, setHousehold } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const router = useRouter();
 
   async function handleCreateHousehold(e) {
