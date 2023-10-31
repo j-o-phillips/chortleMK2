@@ -1,0 +1,23 @@
+# POST  http://localhost:3006/budgets/new 
+# Content-Type: application/json
+
+# {
+#     "name": "New testing budget",
+#     "max": 215.22
+# }
+
+
+# GET http://localhost:3006/budgets
+# Content-Type: application/json
+
+
+
+# POST  http://localhost:3006/expenses/new 
+# Content-Type: application/json
+
+# {
+#     "description": "My second expense",
+#     "amount": 12.51,
+#     "budgetId": "653bd91a7039c6268e6113dc"
+# }
+        

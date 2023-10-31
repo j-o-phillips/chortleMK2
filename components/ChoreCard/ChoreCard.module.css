@@ -1,3 +1,65 @@
 .card {
-    border:
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin: 0 10px 10px 10px;
 }
+.h3 {
+    border-bottom: 1px solid lightgray;
+    font-weight: bolder;
+    margin: 0 10px;
+}
+
+.chore {
+    border-bottom: 1px solid lightgray;
+    margin: 0 10px;
+}
+
+.h5 {
+    font-weight: bold; 
+    display: inline;
+}
+
+.date {
+    border-bottom: 1px solid lightgray;
+    margin: 0 10px;
+}
+.due {
+    display: inline;
+    margin: 0 10px;
+}
+.users {
+    border-bottom: 1px solid lightgray;
+    margin: 0 10px;
+}
+
+.pictures {
+    display: inline;
+    margin: 0 10px;
+}
+
+.isdone {
+    text-align: center;
+    margin: 2px 0;
+}
+.markDone {
+    background-color: lightgray;
+    color: white;
+    padding: 1px;
+    cursor: pointer;
+    border-radius: 10px;
+    display: center;
+    line-height: 30px;
+}
+
+.markDone:hover {
+    background-color: green;
+}
+
+.completed {
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    border-radius: 10px;
+    line-height: 30px;
+}
+  
