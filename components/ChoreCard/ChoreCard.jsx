@@ -1,7 +1,13 @@
-import { Card, Button } from "react-bootstrap";
+"use client"
+import {useState} from 'react'
 import style from './ChoreCard.module.css'
 
 function ChoreCard({ chore }) {
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  const handleMarkAsDone = () => {
+    setIsCompleted(!isCompleted);
+  };
   //add modal with specific chore details to each chore card
   function progressBarVariant(deadline) {
     const today = new Date();
@@ -18,25 +24,26 @@ function ChoreCard({ chore }) {
 
   return (
     <div className={style.card}>
-    <Card className="card">
-      {/* <div><h3>{chore.title}</h3></div> */}
-      <div><h3>Title</h3></div>
-      <div>
-        <h5>Description:</h5>
-        {/* <p>{chore.description}</p> */}
-        <p>Chore Description</p>
-      </div>
-      <div>
-        {/* <h5>Due date: {chore.deadline}</h5> */}
-        <h5>Due date:  DD-MM-YYYY</h5>
-      </div>
-      <div>
-        {/* <h5>Assign to: {chore.assignees.imgURL}</h5> */}
-        <h5>Assign to: users pictures</h5>
-      </div>
-      <div><Button className="d-button">See details</Button>
-      <Button className="c-button">Check as done</Button></div>
-    </Card>
+        <h3 className={style.h3}>Title</h3>
+        <div className={style.chore}>
+          <h5 className={style.h5}>Description:</h5>
+          <p>Chore Description</p>
+        </div>
+        <div className={style.date}>
+          <h5 className={style.h5}>Due date:</h5>
+          <p className={style.due}>DD-MM-YYYY</p>
+        </div>
+        <div className={style.users}>
+          <h5 className={style.h5}>Assign to:</h5>
+          <p className={style.pictures}> users pictures</p>
+        </div>
+        <div className={style.isdone}>
+        <button
+      className={isCompleted ? style.completed : style.markDone}
+      onClick={handleMarkAsDone}
+    >
+      {isCompleted ? 'Completed' : 'Set Chore as Completed'}
+    </button></div>
     </div>
   )
 }
