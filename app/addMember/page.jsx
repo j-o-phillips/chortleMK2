@@ -4,14 +4,13 @@ import styles from "./page.module.css";
 import { UserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
-function CreateHousehold() {
+function AddMember() {
   const [householdName, setHouseholdName] = useState("");
   const { user } = useContext(UserContext);
   const router = useRouter();
 
-  async function handleCreateHousehold(e) {
+  async function AddMember(e) {
     e.preventDefault();
-
     if (!householdName) {
       alert("Household name required");
       return;
@@ -46,7 +45,7 @@ function CreateHousehold() {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleCreateHousehold}>
+      <form onSubmit={AddMember}>
         <input
           className={styles.input}
           type="text"
@@ -62,4 +61,4 @@ function CreateHousehold() {
   );
 }
 
-export default CreateHousehold;
+export default AddMember;
