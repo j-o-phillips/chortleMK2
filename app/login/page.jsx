@@ -22,6 +22,7 @@ function Login() {
             imgURL: session.data.user.image,
             households: [],
           };
+          // console.log(data);
           const res = await fetch("http://localhost:3000/api/users", {
             method: "POST",
             headers: {
@@ -30,7 +31,7 @@ function Login() {
             body: JSON.stringify(data),
           });
           const response = await res.json();
-          console.log(response);
+          // console.log(response);
           if (res.ok) {
             setUser(response.user);
             router.push(response.redirect);
@@ -38,7 +39,7 @@ function Login() {
             throw new Error("Failed to create a user");
           }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       }
     }
