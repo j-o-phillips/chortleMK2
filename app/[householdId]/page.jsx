@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+
+import ChoreCard from "@/components/ChoreCard/ChoreCard";
+import { Card } from "react-bootstrap";
 
 function Dashboard() {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <ChoreCard/>
+   
   );
 }
 
