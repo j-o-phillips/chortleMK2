@@ -1,21 +1,28 @@
 .nav {
-    top: 0;
-    background-color: lightgrey;
-    display: flex;
-    justify-content: space-between;
-    padding: 25px;
-    height: 10vh;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  height: 10vh;
 }
 
 .logo {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .end {
-    display: inline-flex;
+  display: flex;
+  align-items: center;
 }
 
 .button {
-    border: 1px solid black;
-    margin-left: 10px;
+  border: 1px solid black;
+  margin-left: 10px;
+}
+
+.image {
+  border-radius: 50%;
+  height: 50px;
+  margin: 15px;
 }
