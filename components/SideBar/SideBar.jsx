@@ -38,6 +38,7 @@ function SideBar() {
               </button>
             </div>
             <div className={style.copyright}>&copy; 2023 Chores App</div>
+            <div className={style.design}>Designed by:<br />Hairdynamics Team<br />(SEI 75)</div>
           </div>
           <div className={style.content}></div>
         </div>

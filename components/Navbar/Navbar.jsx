@@ -6,7 +6,7 @@ import style from "./Navbar.module.css";
 
 // import { UserContext } from "@/context/UserContext";
 
-import Image from "next/image";
+// import Image from "next/image";
 
 import { useSession } from "next-auth/react";
 
