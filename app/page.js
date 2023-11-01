@@ -58,7 +58,12 @@ function Login() {
         <LoginBtn />
       </div>
       <div className={styles.item}>
-        <Image src={Hero} />
+        <Image        
+        src="/_next/static/media/cleaning.e35c6e32.png"
+        alt="Cleaning"
+        width={500}
+        height={300}
+        priority={true} />
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ export async function POST(req, {params}) {
           { status: 200 }
         );
       } catch (error) {
-        return NextResponse.json({ error: "Error creating chore" }, { status: 400 });
+        return NextResponse.json({ error: 'error', error }, { status: 400 });
       }
     }
 

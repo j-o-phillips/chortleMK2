@@ -20,7 +20,6 @@ function Dashboard() {
         `http://localhost:3000/api/household/${user.households[0]}/chores`
       );
       const data = await response.json();
-      console.log(data.chores);
       setChores(data.chores);
     } catch (error) {
       console.log(error);
@@ -50,7 +49,11 @@ function Dashboard() {
             print chores
           </button>
           {chores.map((chore) => {
-            return <ChoreCard key={chore._id} data={chore} />;
+            return (
+              <ChoreCard
+                key={chore._id}
+                data={chore}
+              />)
           })}
         </div>
       </>

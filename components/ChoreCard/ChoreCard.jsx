@@ -1,13 +1,46 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import style from "./ChoreCard.module.css";
 
 function ChoreCard({ data }) {
   const [isCompleted, setIsCompleted] = useState(false);
+  const [assigneeData, setAssigneeData] = useState([])
 
   const handleMarkAsDone = () => {
     setIsCompleted(!isCompleted);
   };
+
+  useEffect(() => {
+    const assigneeIds = data.assignees
+
+    Promise.all(
+      assigneeIds.map(async (assigneeId) => {
+        const response = await fetch(`http://localhost:3000/api/users/${assigneeId}`);
+        if (response.ok) {
+          const userData = await response.json();
+          return userData;
+        }
+        return null;
+      })
+    )
+      .then((userDataArray) => {
+        const validUserData = userDataArray.filter((userData) => userData !== null);
+        setAssigneeData(validUserData)
+      })
+      .catch((error) => {
+        console.error('Error fetching assignee data', error);
+      });
+  }, []);
+
+  function formatDueDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-based, so add 1
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
   //add modal with specific chore details to each chore card
   function progressBarVariant(deadline) {
     const today = new Date();
@@ -15,15 +48,19 @@ function ChoreCard({ data }) {
     const daysToDeadline = timeToDeadline / (1000 * 60 * 60 * 24);
 
     if (daysToDeadline <= 0) {
-      return "danger";
+      return style.danger;
     } else if (daysToDeadline <= 3) {
-      return "warning";
+      return style.warning;
     }
-    return "primary";
+    return style.primary;
   }
 
+  const cardColor = progressBarVariant(data.deadline);
+
+
+
   return (
-    <div className={style.card}>
+    <div className={`${style.card} ${cardColor}`}>
       <h3 className={style.h3}>Title: {data.name}</h3>
       <div className={style.chore}>
         <h5 className={style.h5}>Description:</h5>
@@ -31,19 +68,34 @@ function ChoreCard({ data }) {
       </div>
       <div className={style.date}>
         <h5 className={style.h5}>Due date:</h5>
-        <p className={style.due}>{data.deadline}</p>
+        <p className={style.due}>{formatDueDate(data.deadline)}</p>
       </div>
       <div className={style.users}>
         <h5 className={style.h5}>Assign to:</h5>
-        <p className={style.pictures}> {data.assignees}</p>
+        <div className={style.pictures}>
+          {assigneeData.map((user, index) => (
+            <div key={index}>
+              <Image
+                src={user.imgURL}
+                alt={user.name}
+                width={25}
+                height={25} />
+            </div>
+          ))}
+        </div>
       </div>
       <div className={style.isdone}>
-        <button
-          className={isCompleted ? style.completed : style.markDone}
-          onClick={handleMarkAsDone}
-        >
-          {isCompleted ? "Completed" : "Set Chore as Completed"}
-        </button>
+        <div className={style.buttonGroup}>
+          <button
+            className={isCompleted ? style.completed : style.markDone}
+            onClick={handleMarkAsDone}
+          >
+            {isCompleted ? "Completed" : "Close Chore"}
+          </button>
+          <div className={style.delete}>
+          <button>Delete</button>
+          </div>
+        </div>
       </div>
     </div>
   );
