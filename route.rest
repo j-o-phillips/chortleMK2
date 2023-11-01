@@ -1,13 +1,15 @@
-# POST  http://localhost:3006/budgets/new 
-# Content-Type: application/json
+POST http://localhost:3000/api/household/6541242bef76eda36ec899c4/chores
+Content-Type: application/json
 
-# {
-#     "name": "New testing budget",
-#     "max": 215.22
-# }
+{
+    "name": "New Chore",
+    "description": "Chore Description",
+    "deadline": "2023-11-03",
+    "assignees": "65412babef76eda36ec899f8"
+}
 
 
-# GET http://localhost:3006/budgets
+# GET http://localhost:3000/api/household/6541242bef76eda36ec899c4
 # Content-Type: application/json
 
 

@@ -19,3 +19,16 @@ export async function POST(req) {
     { status: 201 }
   );
 }
+
+export async function GET() {
+  await connectMongoDB();
+  const household = await Household.find();
+  return NextResponse.json({ household });
+}
+
+export async function DELETE(req) {
+  const id = req.nextUrl.searchParams.get("id");
+  await connectMongoDB();
+  await Household.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Household deleted" }, { status: 200 });
+}

@@ -1,0 +1,103 @@
+.page {
+    margin: 10px;
+  }
+   .h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: larger;
+  }
+
+  .form {
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .input {
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    width: 100%;
+    margin: 1px 0;
+  }
+  .textarea {
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    width: 100%; 
+    margin-bottom: -6px;   
+  }
+  
+  .select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+
+  .addbtn {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .add {
+    width: 40%;
+    padding: 10px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add:hover {
+    background-color: #005a9e;
+  }
+  
+  .ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .li button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .li button:hover {
+    background-color: #cc0000;
+  }
+  
+  .submit {
+    width: 25%;
+    padding: 10px;
+    margin: 10px auto 0 0;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    background-color: #005a9e;
+  }
