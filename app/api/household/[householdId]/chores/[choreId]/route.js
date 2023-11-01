@@ -3,7 +3,7 @@ import Chore from "@/models/chores";
 import Household from "@/models/household";
 import { NextResponse } from "next/server";
 
-export async function getChore(req, { params }) {
+export async function GET(req, { params }) {
   try {
   const { choreId } = params;
   await connectMongoDB();
@@ -19,7 +19,7 @@ export async function getChore(req, { params }) {
 }
 
 ///
-export async function deleteChore(req, { params }) {
+export async function DELETE(req, { params }) {
   try {
     const { householdId, choreId } = params;
     await connectMongoDB();

@@ -5,11 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import style from "./page.module.css";
 import { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
 
 function CreateChore() {
   const { user } = useContext(UserContext);
   const householdId = user.households[0];
+  const [memberIdToNameMap, setMemberIdToNameMap] = useState({})
   const initialFormData = {
     name: "",
     description: "",
@@ -21,15 +21,22 @@ function CreateChore() {
   const [formData, setFormData] = useState(initialFormData);
   const [householdMembers, setHouseholdMembers] = useState([]);
 
-
   useEffect(() => {
     const fetchHouseholdMembers = async () => {
       try {
         const response = await fetch(`/api/household/${householdId}`);
         if (response.ok) {
           const data = await response.json();
-          console.log(data.allUsers.users);
-          setHouseholdMembers(data.allUsers.users);
+          const members = data.allUsers.users;
+          const idToNameMap = {};
+          
+          members.forEach((member) => {
+            idToNameMap[member._id] = member.name;
+          });
+  
+          setMemberIdToNameMap(idToNameMap);
+  
+          setHouseholdMembers(members);
         } else {
           console.error("Error fetching household members");
         }
@@ -41,24 +48,21 @@ function CreateChore() {
     fetchHouseholdMembers();
   }, []);
 
-  //To be able to select more than 1 assignee
   const handleAssigneeChange = (e) => {
     setFormData({ ...formData, selectedAssignee: e.target.value });
   };
 
   const handleAddAssignee = () => {
     if (formData.selectedAssignee) {
-
-      const member = householdMembers.find(
-        (memb) => memb._id === formData.selectedAssignee
-      );
-
-      if (member) {
-      setFormData({
-        ...formData,
-        assignees: [...formData.assignees, member.name],
-        selectedAssignee: "",
-      });
+      const memberId = formData.selectedAssignee;
+  
+      
+      if (!formData.assignees.includes(memberId)) {
+        setFormData({
+          ...formData,
+          assignees: [...formData.assignees, memberId],
+          selectedAssignee: "",
+        });
     }
   }
   };
@@ -70,10 +74,8 @@ function CreateChore() {
 
   const handleCreateChore = async (e) => {
     e.preventDefault();
-    console.log("clicked");
     try {
       const data = { ...formData, assignees: formData.assignees };
-      console.log(data);
 
       const res = await fetch(
         `http://localhost:3000/api/household/${householdId}/chores`,
@@ -93,7 +95,7 @@ function CreateChore() {
         setFormData(initialFormData)
         
       } else {
-        console.error("Error creating chore");
+        console.error("Error creating chore.  Status: ${res.status}, Message: ${res.statusText}`)");
       }
     } catch (error) {
       console.error("Error creating chore", error);
@@ -154,9 +156,9 @@ function CreateChore() {
             </button>
           </div>
           <ul className={style.ul}>
-            {formData.assignees.map((assignee, index) => (
-              <li className={style.li} key={index} value={name}>
-                {assignee}
+  {formData.assignees.map((memberId, index) => (
+    <li className={style.li} key={index}>
+      {memberIdToNameMap[memberId]}
                 <button
                   type="button"
                   onClick={() => handleRemoveAssignee(assignee)}

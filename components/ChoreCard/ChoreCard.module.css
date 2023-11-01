@@ -35,11 +35,27 @@
 .pictures {
     display: inline;
     margin: 0 10px;
+    border-radius: 50px;
 }
 
-.isdone {
-    text-align: center;
-    margin: 2px 0;
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1px 10px;
+}
+.delete{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fd0909;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: white;
+    font-size: 12px;
+    margin-left: 2px;
+}
+.delete:hover {
+    background-color: rgb(136, 4, 4);
 }
 .markDone {
     padding: 10px;
@@ -49,6 +65,7 @@
     border-radius: 5px;
     width: max-content;
     color: white;
+    font-size: 12px;
 }
 
 .markDone:hover {
@@ -61,5 +78,22 @@
     border: 1px solid green;
     border-radius: 10px;
     line-height: 30px;
+    font-size: 12px;
+    padding: 3px;
 }
-  
+
+.danger {
+    background-color: rgba(255, 13, 0, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+.warning {
+    background-color: rgba(255, 219, 88, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    
+}
+
+.primary {
+    background-color: rgba(241, 239, 239, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
