@@ -3,8 +3,10 @@ import { useContext, useState } from "react";
 import styles from "./page.module.css";
 import { UserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 function AddMember() {
+  const session = useSession();
   const [memberEmail, setMemberEmail] = useState("");
   const { user } = useContext(UserContext);
   const router = useRouter();
@@ -41,22 +43,30 @@ function AddMember() {
     }
   }
 
-  return (
-    <div className={styles.container}>
-      <form onSubmit={AddMember}>
-        <input
-          className={styles.input}
-          type="email"
-          placeholder="email"
-          onChange={(e) => {
-            setMemberEmail(e.target.value);
-          }}
-        />
+  if (session.status === "loading") {
+    return <p>loading...</p>;
+  }
+  if (session.status === "unauthenticated") {
+    router.push("/login");
+  }
+  if (session.status === "authenticated") {
+    return (
+      <div className={styles.container}>
+        <form onSubmit={AddMember}>
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="email"
+            onChange={(e) => {
+              setMemberEmail(e.target.value);
+            }}
+          />
 
-        <button className={styles.button}>Add New Member</button>
-      </form>
-    </div>
-  );
+          <button className={styles.button}>Add New Member</button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default AddMember;

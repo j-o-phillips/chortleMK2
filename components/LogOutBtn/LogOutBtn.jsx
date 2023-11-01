@@ -10,7 +10,7 @@ function LogOutBtn() {
 
   function handleLogout() {
     signOut("google");
-    router.push("/login");
+    router.push("/");
   }
   return (
     <>
