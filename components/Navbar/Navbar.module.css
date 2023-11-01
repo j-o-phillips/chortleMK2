@@ -1,12 +1,12 @@
 .nav {
 
-  background-color: lightgrey;
+  background-color: #BFCCB5;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px;
-  height: 10vh;
-    border-bottom: solid 1px #7C96AB;
+  height: 7vh;
+  border-bottom: solid 1px #7C96AB;
 
 }
 
@@ -17,11 +17,6 @@
 .end {
   display: flex;
   align-items: center;
-}
-
-.button {
-  border: 1px solid black;
-  margin-left: 10px;
 }
 
 .image {
