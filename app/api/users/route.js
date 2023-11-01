@@ -1,5 +1,4 @@
 import connectMongoDB from "@/libs/mongodb";
-
 import User from "@/models/users";
 import { NextResponse } from "next/server";
 
@@ -53,9 +52,3 @@ export async function GET() {
   return NextResponse.json({ user });
 }
 
-export async function DELETE(req) {
-  const id = req.nextUrl.searchParams.get("id");
-  await connectMongoDB();
-  await User.findByIdAndDelete(id);
-  return NextResponse.json({ message: "User deleted" }, { status: 200 });
-}

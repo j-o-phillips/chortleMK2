@@ -1,18 +1,22 @@
 import connectMongoDB from "@/libs/mongodb";
-import { Chore } from "@/models/chores";
+import Chore from "@/models/chores";
 import Household from "@/models/household";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
+export async function POST(req, {params}) {
    try{
-  const { name, description, deadline, assignees, householdId } = await req.json();
+  const { name, description, deadline, assignees } = await req.json();
+  const { householdId } = params
+  console.log(householdId);
   await connectMongoDB();
        
   const chore = await Chore.create({
           name: name,
           description: description,
           deadline: deadline,
-          assignees: [assignees]
+          assignees: [assignees],
+          household: householdId
+
         });
   
         await Household.findByIdAndUpdate(householdId, { 
@@ -27,19 +31,24 @@ export async function POST(req) {
       }
     }
 
-    ////////////////////////////////
+    ///
 
-    export async function GET() {
-      await connectMongoDB();
-      const chore = await Chore.find();
-      return NextResponse.json({ chore });
-    }
-
-
-    export async function DELETE(req) {
-      const id = req.nextUrl.searchParams.get("id");
-      await connectMongoDB();
-      await Chore.findByIdAndDelete(id);
-      return NextResponse.json({ message: "Chore deleted" }, { status: 200 });
-    }
+    export async function GET(req, { params }) {
+      try {
+        const { householdId } = params;
+        console.log(householdId);
+        if (!householdId) {
+          return NextResponse.json({ error: "Missing householdId" }, { status: 400 });
+        }
     
+        await connectMongoDB();
+    
+        const chores = await Chore.find({ household: householdId });
+    
+        return NextResponse.json({ chores }, { status: 200 });
+      } catch (error) {
+        return NextResponse.json({ error: "Error fetching chores" }, { status: 500 });
+      }
+    }
+
+
