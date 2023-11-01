@@ -1,5 +1,6 @@
 "use client";
-import LogOutBtn from "@/components/LogOutBtn/LogOutBtn";
+import Hero from "public/cleaning.png";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -53,7 +54,12 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <LoginBtn />
+      <div className={styles.item}>
+        <LoginBtn />
+      </div>
+      <div className={styles.item}>
+        <Image src={Hero} />
+      </div>
     </div>
   );
 }
