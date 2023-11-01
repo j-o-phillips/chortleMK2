@@ -9,12 +9,4 @@
   border: 1px solid black;
 }
 
-.button {
-  padding: 5px;
-  cursor: pointer;
-  background-color: #53c28b;
-  border: none;
-  border-radius: 5px;
-  width: max-content;
-  color: white;
-}
+
