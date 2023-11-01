@@ -1,17 +1,28 @@
-POST http://localhost:3000/api/household/6541242bef76eda36ec899c4/chores
+POST http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores
 Content-Type: application/json
 
 {
-    "name": "New Chore",
+    "name": "test",
     "description": "Chore Description",
     "deadline": "2023-11-03",
-    "assignees": "65412babef76eda36ec899f8"
+    "assignees": "65423397281c7283e1fd4c4c"
 }
 
 
-# GET http://localhost:3000/api/household/6541242bef76eda36ec899c4
+# GET http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/65421d26281c7283e1fd4bec
+
+
+
+# PUT http://localhost:3000/api/household/65414e9a4cda413d82975ab1
 # Content-Type: application/json
 
+# {
+#     "newName": "Lopes de Carvalho",
+#     "newUsers": "65414e474cda413d82975aab"
+# }
+
+
+# DELETE http://localhost:3000/api/household/123/chores/65421d26281c7283e1fd4bec
 
 
 # POST  http://localhost:3006/expenses/new 
