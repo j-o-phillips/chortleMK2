@@ -5,25 +5,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import style from "./page.module.css";
 import { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 function CreateChore() {
   const { user } = useContext(UserContext);
   const householdId = user.households[0];
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: "",
     description: "",
     deadline: "",
     assignees: [],
-  });
+    selectedAssignee: "",
+  };
 
+  const [formData, setFormData] = useState(initialFormData);
   const [householdMembers, setHouseholdMembers] = useState([]);
 
-  //Temporary
-  const simulatedHouseholdMembers = ["Jake", "Rick", "Ivan"];
-
-  // useEffect(() => {
-  //   setHouseholdMembers(simulatedHouseholdMembers);
-  // }, []);
 
   useEffect(() => {
     const fetchHouseholdMembers = async () => {
@@ -51,12 +48,19 @@ function CreateChore() {
 
   const handleAddAssignee = () => {
     if (formData.selectedAssignee) {
+
+      const member = householdMembers.find(
+        (memb) => memb._id === formData.selectedAssignee
+      );
+
+      if (member) {
       setFormData({
         ...formData,
-        assignees: [...formData.assignees, formData.selectedAssignee],
+        assignees: [...formData.assignees, member.name],
         selectedAssignee: "",
       });
     }
+  }
   };
 
   const handleRemoveAssignee = (assignee) => {
@@ -85,6 +89,9 @@ function CreateChore() {
 
       if (res.status === 200) {
         console.log("Chore created successfully");
+
+        setFormData(initialFormData)
+        
       } else {
         console.error("Error creating chore");
       }
@@ -148,7 +155,7 @@ function CreateChore() {
           </div>
           <ul className={style.ul}>
             {formData.assignees.map((assignee, index) => (
-              <li className={style.li} key={index}>
+              <li className={style.li} key={index} value={name}>
                 {assignee}
                 <button
                   type="button"

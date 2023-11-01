@@ -8,7 +8,7 @@ export async function PUT(req, { params }) {
     const { householdId } = params;
     const { newName: name, newUsers: users } = await req.json();
     await connectMongoDB();
-    await Household.findByIdAndUpdate(householdId, { name, users });
+    const updatedHousehold = await Household.findByIdAndUpdate(householdId, { name, users });
 
     if (!updatedHousehold) {
       return NextResponse.json(
