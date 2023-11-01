@@ -43,6 +43,3 @@ export async function POST(req) {
       return NextResponse.json({ message: "Chore deleted" }, { status: 200 });
     }
     
-
-
-
