@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import style from './page.module.css'
+import { useContext } from "react";
+import { UserContext } from "@/context/UserContext";
 
 
 function CreateChore() {
@@ -73,7 +75,7 @@ function CreateChore() {
     try {
       const data = { ...formData, assignees: formData.assignees }
 
-      const res = await fetch(`http://localhost:3000/api/household/chores`, {
+      const res = await fetch(`http://localhost:3000/api/household/${householdId}/chores`, {
 
         method: "POST",
         headers: {

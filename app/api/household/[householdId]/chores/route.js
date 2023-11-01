@@ -1,34 +1,48 @@
 import connectMongoDB from "@/libs/mongodb";
 import { Chore } from "@/models/chores";
-import User from "@/models/users";
+import Household from "@/models/household";
+import { NextResponse } from "next/server";
 
-export default async function POST(req, res) {
+export async function POST(req) {
    try{
-  const { name, description, deadline, assignees } = await req.body;
+  const { name, description, deadline, assignees, householdId } = await req.json();
   await connectMongoDB();
-
-      
-      const assigneesnames = await Promise.all(assignees.map(async (name) => {
-        const user = await User.findOne({ name });
-        return user ? user._id : null;
-      }));
-  
-    
-      const validAssignees = assigneesnames.filter((assignee) => assignee);
-  
-        
+       
   const chore = await Chore.create({
           name: name,
           description: description,
           deadline: deadline,
-          assignees: validAssignees
+          assignees: [assignees]
         });
   
-        await chore.save();
-  
-        res.status(200).json({ message: "Chore created successfully" });
+        await Household.findByIdAndUpdate(householdId, { 
+          $push: {chores: chore._id }});
+
+        return NextResponse.json(
+          { message: "Chore Created", chore },
+          { status: 200 }
+        );
       } catch (error) {
-        res.status(400).json({ error: "Error creating chore" });
+        return NextResponse.json({ error: "Error creating chore" }, { status: 400 });
       }
     }
-      res.status(405).end();
+
+    ////////////////////////////////
+
+    export async function GET() {
+      await connectMongoDB();
+      const chore = await Chore.find();
+      return NextResponse.json({ chore });
+    }
+
+
+    export async function DELETE(req) {
+      const id = req.nextUrl.searchParams.get("id");
+      await connectMongoDB();
+      await Chore.findByIdAndDelete(id);
+      return NextResponse.json({ message: "Chore deleted" }, { status: 200 });
+    }
+    
+
+
+

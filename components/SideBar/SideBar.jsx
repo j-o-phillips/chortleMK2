@@ -14,6 +14,8 @@ function SideBar() {
             <NavItem icon="🏠" label="Home" />
             <NavItem icon="📊" label="Analytics" />
             <NavItem icon="⚙️" label="Settings" />
+            <h1>Welcome, {user ? user.name : 'Guest'}</h1>
+      <p>Email: {user ? user.email : 'N/A'}</p>
             <Link href={`/${user.households[0]}/addMember`}>Add Member</Link>
             <button
               onClick={() => {
