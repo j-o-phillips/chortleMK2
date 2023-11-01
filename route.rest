@@ -1,15 +1,15 @@
-POST  http://localhost:3000/api/household/6541242bef76eda36ec899c4/chores/new 
+POST http://localhost:3000/api/household/6541242bef76eda36ec899c4/chores
 Content-Type: application/json
 
 {
     "name": "New Chore",
     "description": "Chore Description",
-    "deadline": 02-11-2023,
-    "assignees": "65412421ef76eda36ec899c0",
+    "deadline": "2023-11-03",
+    "assignees": "65412babef76eda36ec899f8"
 }
 
 
-# GET http://localhost:3000/api/users
+# GET http://localhost:3000/api/household/6541242bef76eda36ec899c4
 # Content-Type: application/json
 
 

@@ -1,11 +1,13 @@
 "use client";
 
 import ChoreCard from "@/components/ChoreCard/ChoreCard";
-
 import style from './page.module.css'
+import { useContext } from "react";
+import { UserContext } from "@/context/UserContext";
 
 
-function Dashboard() {
+function Dashboard() { 
+  const { user } = useContext(UserContext)
   return (
     <>
     <div className={style.page}>
@@ -15,8 +17,9 @@ function Dashboard() {
         <ChoreCard />
       </div>
       </div>
-    </>
+    </> 
   );
+ 
 
 }
 
