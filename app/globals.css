@@ -4,21 +4,17 @@
 
 div.main-container {
   display: grid;
-  height: 90vh;
+  height: 100vh;
   grid-template-columns: 1fr 4fr;
   background-color: #faf9f8;
 }
 
-
-
 .button {
   padding: 10px;
   cursor: pointer;
-  background-color: #7C96AB;
+  background-color: #7c96ab;
   border: none;
   border-radius: 5px;
   width: max-content;
   color: white;
 }
-
-
