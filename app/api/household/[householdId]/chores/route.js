@@ -49,4 +49,15 @@ export async function POST(req, {params}) {
       }
     }
 
+    await connectMongoDB();
 
+    const chores = await Chore.find({ household: householdId });
+
+    return NextResponse.json({ chores }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Error fetching chores" },
+      { status: 500 }
+    );
+  }
+}
