@@ -7,27 +7,50 @@ function SideBar() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className={style.container}>
-      <div className={style.sidebar}>
-        {user && (
-          <div className={style.icons}>
-            <NavItem icon="🏠" label="Home" />
-            <NavItem icon="📊" label="Analytics" />
-            <NavItem icon="⚙️" label="Settings" />
-            <Link href={`/${user.households[0]}/addMember`}>Add Member</Link>
-            <button
-              onClick={() => {
-                console.log(user);
-              }}
-            >
-              Print
-            </button>
+    <>
+      {user && (
+        <div className={style.container}>
+          <div className={style.sidebar}>
+            <div className={style.icons}>
+              <NavItem icon="🏠" label="Home" />
+              <NavItem icon="📊" label="Analytics" />
+              <NavItem icon="⚙️" label="Settings" />
+              <Link
+                style={{ display: "block" }}
+                href={`/${user.households[0]}`}
+              >
+                My Household
+              </Link>
+              <Link
+                style={{ display: "block" }}
+                href={`/${user.households[0]}/addMember`}
+              >
+                Add Member
+              </Link>
+              <Link
+                style={{ display: "block" }}
+                href={`/${user.households[0]}/createChore`}
+              >
+                Create Chore
+              </Link>
+              <Link style={{ display: "block" }} href={`/login`}>
+                Login
+              </Link>
+              <button
+                style={{ display: "block" }}
+                onClick={() => {
+                  console.log(user);
+                }}
+              >
+                Print
+              </button>
+            </div>
+            <div className={style.copyright}>&copy; 2023 Chores App</div>
           </div>
-        )}
-        <div className={style.copyright}>&copy; 2023 Chores App</div>
-      </div>
-      <div className={style.content}></div>
-    </div>
+          <div className={style.content}></div>
+        </div>
+      )}
+    </>
   );
 }
 
