@@ -10,7 +10,7 @@ const choreSchema = new Schema(
       ref: "User",
     },
     household: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Household',
     },
   },
