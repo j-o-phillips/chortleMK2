@@ -1,29 +1,29 @@
-POST http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores
-Content-Type: application/json
-
-{
-    "name": "test",
-    "description": "Chore Description",
-    "deadline": "2023-11-03",
-    "assignees": "65423397281c7283e1fd4c4c"
-}
-
-
-# GET http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/65421d26281c7283e1fd4bec
-
-
-
-# PUT http://localhost:3000/api/household/65414e9a4cda413d82975ab1
+# POST http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores
 # Content-Type: application/json
 
 # {
-#     "newName": "Lopes de Carvalho",
-#     "newUsers": "65414e474cda413d82975aab"
+#     "name": "2 delete again",
+#     "description": "2 delete",
+#     "deadline": "2023-11-04",
+#     "assignees": "65423397281c7283e1fd4c4c",
+#     "household": "654233ed281c7283e1fd4c61"
 # }
 
 
-# DELETE http://localhost:3000/api/household/123/chores/65421d26281c7283e1fd4bec
+# GET http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/654259ff79cef34cb879c68a
 
+
+
+PUT http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/654259ff79cef34cb879c68a
+Content-Type: application/json
+
+{
+    "name": "test 1 gazilion",
+    "description": "successfull"
+}
+
+
+# DELETE http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/65425a8279cef34cb879c693
 
 # POST  http://localhost:3006/expenses/new 
 # Content-Type: application/json
