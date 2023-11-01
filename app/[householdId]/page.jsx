@@ -11,11 +11,11 @@ function Dashboard() {
   const session = useSession();
   const router = useRouter();
 
-  if (session.status === "loading") {
-    return <p>loading...</p>;
-  }
   if (session.status === "unauthenticated") {
     router.push("/");
+  }
+  if (session.status === "loading") {
+    return <p>loading...</p>;
   }
   if (session.status === "authenticated") {
     return (

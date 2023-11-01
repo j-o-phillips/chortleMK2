@@ -12,30 +12,22 @@ function SideBar() {
         <div className={style.container}>
           <div className={style.sidebar}>
             <div className={style.icons}>
-              <NavItem icon="🏠" label="Home" />
-              <NavItem icon="📊" label="Analytics" />
-              <NavItem icon="⚙️" label="Settings" />
-              <Link
-                style={{ display: "block" }}
-                href={`/${user.households[0]}`}
-              >
-                My Household
+              <Link href={`/${user.households[0]}`}>
+                <NavItem icon="🏠" label="My Household" />
               </Link>
               <Link
                 style={{ display: "block" }}
                 href={`/${user.households[0]}/addMember`}
               >
-                Add Member
+                <NavItem icon="👤" label="Add Member" />
               </Link>
               <Link
                 style={{ display: "block" }}
                 href={`/${user.households[0]}/createChore`}
               >
-                Create Chore
+                <NavItem icon="🧹" label="Create Chore" />
               </Link>
-              <Link style={{ display: "block" }} href={`/login`}>
-                Login
-              </Link>
+
               <button
                 style={{ display: "block" }}
                 onClick={() => {
@@ -63,7 +55,7 @@ const NavItem = ({ icon, label }) => (
       padding: "7px",
       display: "flex",
       alignItems: "center",
-      justifyContent: 'center'
+      justifyContent: "center",
     }}
   >
     <span style={{ marginRight: "10px" }}>{icon}</span>
