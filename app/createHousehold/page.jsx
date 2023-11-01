@@ -56,7 +56,7 @@ function CreateHousehold() {
           }}
         />
 
-        <button className={styles.button}>Create Household</button>
+        <button className="button">Create Household</button>
       </form>
     </div>
   );
