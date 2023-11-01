@@ -50,12 +50,13 @@ export async function deleteChore(req, { params }) {
   export async function PUT(req, { params, body }) {
     try {
       const { choreId } = params;
-      console.log(choreId);
+      const reqBody = await json(req)
+      console.log(reqBody);
       await connectMongoDB();
   
       const updatedChore = await Chore.findByIdAndUpdate(
         choreId,
-        { $set: body },
+        { $set: reqBody },
         { new: true }
       );
   
