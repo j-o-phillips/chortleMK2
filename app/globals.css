@@ -4,7 +4,7 @@
 
 div.main-container {
   display: grid;
-  height: 100vh;
+  height: 93vh;
   grid-template-columns: 1fr 4fr;
   background-color: #faf9f8;
 }
