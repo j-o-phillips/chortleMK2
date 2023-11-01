@@ -28,6 +28,7 @@ const NavItem = ({ icon, label }) => (
       padding: "7px",
       display: "flex",
       alignItems: "center",
+      justifyContent: 'center'
     }}
   >
     <span style={{ marginRight: "10px" }}>{icon}</span>

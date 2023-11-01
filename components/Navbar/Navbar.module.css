@@ -5,6 +5,7 @@
     justify-content: space-between;
     padding: 25px;
     height: 10vh;
+    border-bottom: solid 1px #7C96AB;
 }
 
 .logo {
@@ -15,7 +16,3 @@
     display: inline-flex;
 }
 
-.button {
-    border: 1px solid black;
-    margin-left: 10px;
-}
