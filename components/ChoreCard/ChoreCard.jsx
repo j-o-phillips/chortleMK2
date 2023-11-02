@@ -130,11 +130,11 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
           <div className={style.users}>
             <h5 className={style.h5}>Assign to:</h5>
             <div className={style.pictures}>
-              {assigneeData.map((user, index) => (
+              {assigneeData.map((foundUser, index) => (
                 <div key={index}>
                   <Image
-                    src={user.imgURL}
-                    alt={user.name}
+                    src={foundUser.imgURL}
+                    alt={foundUser.name}
                     width={25}
                     height={25}
                     required="true"
