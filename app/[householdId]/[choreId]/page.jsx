@@ -24,6 +24,35 @@ function Chore({ params }) {
     return setEditVisible(!editVisible);
   }
 
+  async function handleSubmitEdit(e) {
+    e.preventDefault();
+    console.log(newChoreName, newChoreDesc, newChoreDeadline);
+    const data = {
+      name: newChoreName,
+      description: newChoreDeadline,
+      deadline: newChoreDeadline,
+      assignees: chore.assignees,
+      household: chore.household,
+    };
+    console.log(data);
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/household/${user.households[0]}/chores/${choreId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (res.status === 200) {
+        router.push(`/${user.households[0]}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async function getChore() {
     loading = true;
     try {
@@ -72,8 +101,11 @@ function Chore({ params }) {
                   <input
                     className={styles.input}
                     type="text"
-                    placeholder="Name"
+                    placeholder={newChoreName}
                     value={newChoreName}
+                    onChange={(e) => {
+                      setNewChoreName(e.target.value);
+                    }}
                   />
                   <br />
                   <textarea
@@ -82,18 +114,26 @@ function Chore({ params }) {
                     placeholder={newChoreDesc}
                     rows={2}
                     value={newChoreDesc}
+                    onChange={(e) => {
+                      setNewChoreDesc(e.target.value);
+                    }}
                   />{" "}
                   <br />
                   <DatePicker
                     className={styles.input}
                     placeholderText="Due Date"
                     dateFormat="dd-MM-yyyy"
-                    value={newChoreDeadline}
+                    selected={newChoreDeadline}
+                    onChange={(date) => {
+                      setNewChoreDeadline(date);
+                    }}
                   />{" "}
                   <br />
                 </form>
               </div>
-              <button className="button">Submit Changes</button>
+              <button className="button" onClick={handleSubmitEdit}>
+                Submit Changes
+              </button>
             </div>
           )}
         </div>
