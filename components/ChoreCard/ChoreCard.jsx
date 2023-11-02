@@ -2,14 +2,37 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import style from "./ChoreCard.module.css";
+import CreateHousehold from "@/app/createHousehold/page";
 
-function ChoreCard({ data }) {
+function ChoreCard({ data, onDeleteChore, householdId }) {
   const [isCompleted, setIsCompleted] = useState(false);
   const [assigneeData, setAssigneeData] = useState([])
 
-  const handleMarkAsDone = () => {
-    setIsCompleted(!isCompleted);
-  };
+  const handleMarkAsDone = async () => {
+    const userConfirmed = window.confirm("Are you sure you want to mark this chore as completed?");
+
+    if (userConfirmed) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/household/${householdId}/chores/${data._id}`, {
+        method: "PATCH", 
+        body: JSON.stringify({ completed: true }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        setIsCompleted(true);
+      } else {
+        console.error("Chore completion failed", error);
+      }
+    } catch (error) {
+      console.error("Error marking chore as completed", error);
+    }
+  } else {
+    console.log("Chore completion canceled");
+  }
+}
 
   useEffect(() => {
     const assigneeIds = data.assignees
@@ -57,7 +80,22 @@ function ChoreCard({ data }) {
 
   const cardColor = progressBarVariant(data.deadline);
 
+  const handleDeleteChore = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/household/${householdId}/chores/${data._id}`, {
+        method: "DELETE",
+      });
 
+      if (response.ok) {
+        onDeleteChore(data._id)
+      } else {
+        
+        console.error("Chore deletion failed", error);
+      }
+    } catch (error) {
+      console.error("Error deleting chore", error);
+    }
+  };
 
   return (
     <div className={`${style.card} ${cardColor}`}>
@@ -79,7 +117,8 @@ function ChoreCard({ data }) {
                 src={user.imgURL}
                 alt={user.name}
                 width={25}
-                height={25} />
+                height={25}
+                required="true" />
             </div>
           ))}
         </div>
@@ -93,7 +132,7 @@ function ChoreCard({ data }) {
             {isCompleted ? "Completed" : "Close Chore"}
           </button>
           <div className={style.delete}>
-          <button>Delete</button>
+          <button onClick={handleDeleteChore}>Delete</button>
           </div>
         </div>
       </div>

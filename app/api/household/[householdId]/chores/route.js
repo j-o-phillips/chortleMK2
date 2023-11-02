@@ -14,8 +14,7 @@ export async function POST(req, {params}) {
           description: description,
           deadline: deadline,
           assignees: [assignees],
-          household: householdId
-
+          household: householdId,
         });
   
         await Household.findByIdAndUpdate(householdId, { 

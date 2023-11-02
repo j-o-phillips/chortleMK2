@@ -69,3 +69,26 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
   }
+
+  export async function PATCH(req, { params, body }) {
+    try {
+      const { choreId } = params;
+      await connectMongoDB();
+  
+      const update = { completed: true, ...body };
+  
+      const updatedChore = await Chore.findByIdAndUpdate(
+        choreId,
+        { $set: update },
+        { new: true }
+      );
+  
+      if (!updatedChore) {
+        return NextResponse.json({ error: "Chore not found" }, { status: 404 });
+      }
+  
+      return NextResponse.json({ chore: updatedChore }, { status: 200 });
+    } catch (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+  }
