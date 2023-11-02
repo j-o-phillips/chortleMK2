@@ -3,6 +3,7 @@
 // import { useContext } from "react";
 import LogOutBtn from "../LogOutBtn/LogOutBtn";
 import style from "./Navbar.module.css";
+import Image from "next/image";
 
 // import { UserContext } from "@/context/UserContext";
 
@@ -17,7 +18,7 @@ function Navbar() {
 
   return (
     <nav className={style.nav}>
-      <div className={style.logo}>Image</div>
+      <Image  src="/_next/static/media/chortleman.png" width={60 } height={60} alt="chortleman" className={style.logo}></Image>
       {session.status === "authenticated" && (
         <div className={style.end}>
           {/* <h4>{session.data.user.name}</h4> */}
