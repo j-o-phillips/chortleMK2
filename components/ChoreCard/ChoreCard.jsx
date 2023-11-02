@@ -66,12 +66,10 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
           (userData) => userData !== null
         );
         setAssigneeData(validUserData);
-         
       })
       .catch((error) => {
         console.error("Error fetching assignee data", error);
       });
-      
   }, []);
 
   function formatDueDate(dateString) {
@@ -82,10 +80,10 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 
     return `${day}-${month}-${year}`;
   }
-  
+
   function progressBarVariant(deadline) {
     if (!deadline) {
-      return style.primary
+      return style.primary;
     }
 
     const today = new Date();
@@ -142,14 +140,11 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
             <div className={style.pictures}>
               {assigneeData.map((foundUser, index) => (
                 <div key={index}>
-
                   <img
-                    src={user.imgURL}
-                    alt={user.name}
+                    src={foundUser.user.imgURL}
+                    alt={foundUser.user.name}
                     className={style.photo}
-
                   />
-                  {user.name}
                 </div>
               ))}
             </div>

@@ -4,17 +4,19 @@ import connectMongoDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
+//Update household name
 export async function PUT(req, { params }) {
-    const { householdId } = params;
-    console.log(householdId);
-    const { memberId } = await req.json();
-    console.log(memberId)
-    await Household.updateOne({_id:householdId}, {$pull: {users: memberId}});
-    return NextResponse.json(
-      { message: "Household updated" },
-      { status: 200 }
-    );
+  const { householdId } = params;
+  const { householdNameInput } = await req.json();
+  try {
+    await Household.findByIdAndUpdate(householdId, {
+      name: householdNameInput,
+    });
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 500 });
   }
+  return NextResponse.json({ message: "Household updated" }, { status: 200 });
+}
 
 export async function GET(req, { params }) {
   try {

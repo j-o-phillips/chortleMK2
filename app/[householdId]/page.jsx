@@ -13,7 +13,7 @@ function Dashboard() {
   const router = useRouter();
   const { user } = useContext(UserContext);
   const [chores, setChores] = useState([]);
-  const [householdName, setHouseholdName] = useState('')
+  const [householdName, setHouseholdName] = useState("");
 
   async function getChores() {
     try {
@@ -29,12 +29,14 @@ function Dashboard() {
 
   const getHouseholdData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/household/${user.households[0]}`);
+      const response = await fetch(
+        `http://localhost:3000/api/household/${user.households[0]}`
+      );
       if (response.ok) {
         const data = await response.json();
         const householdName = data.allUsers.name;
         console.log(`Household Name: ${householdName}`);
-        setHouseholdName(householdName)
+        setHouseholdName(householdName);
       } else {
         console.error("Error fetching household data");
       }
@@ -49,9 +51,8 @@ function Dashboard() {
 
   useEffect(() => {
     getChores();
-    getHouseholdData()
+    getHouseholdData();
   }, []);
-  
 
   if (session.status === "unauthenticated") {
     router.push("/");
@@ -60,29 +61,22 @@ function Dashboard() {
     return <p>loading...</p>;
   }
   if (session.status === "authenticated") {
-
     let sortedChores = [];
-  if (chores.length > 0) {
-    sortedChores = [...chores].sort((a, b) => {
-      return new Date(a.deadline) - new Date(b.deadline);
-    });
-  }
+    if (chores.length > 0) {
+      sortedChores = [...chores].sort((a, b) => {
+        return new Date(a.deadline) - new Date(b.deadline);
+      });
+    }
 
     return (
       <>
         <div className={style.page}>
           <div className={style.householdTitle}>
-          <div className={style.householdName}>{householdName}</div>
-          <div className={style.household}>Household</div>
+            <div className={style.householdName}>{householdName}</div>
+            <div className={style.household}>Household</div>
           </div>
           <h1 className={style.h1}>Household Chores</h1>
-          {/* <button
-            onClick={() => {
-              console.log(chores);
-            }}
-          >
-            print chores
-          </button> */}
+
           {sortedChores.map((chore) => {
             if (!chore.completed) {
               return (

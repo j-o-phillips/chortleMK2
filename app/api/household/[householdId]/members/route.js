@@ -51,14 +51,33 @@ export async function POST(req, { params }) {
   }
 }
 
-export async function GET (req, {params}) {
+export async function GET(req, { params }) {
   try {
-    const {householdId} = params
-    await connectMongoDB()
-    const members = await User.find({households: householdId})
+    const { householdId } = params;
+    await connectMongoDB();
+    const members = await User.find({ households: householdId });
     console.log(members);
-    return NextResponse.json({members})
+    return NextResponse.json({ members });
   } catch (error) {
-    NextResponse.error(error)
+    NextResponse.error(error);
   }
+}
+
+//remove members from household
+export async function PUT(req, { params }) {
+  const { householdId } = params;
+  console.log(householdId);
+  const { memberId } = await req.json();
+  console.log(memberId);
+  //remove member from household
+  await Household.updateOne(
+    { _id: householdId },
+    { $pull: { users: memberId } }
+  );
+  //remove household from user
+  await User.updateOne(
+    { _id: memberId },
+    { $pull: { households: householdId } }
+  );
+  return NextResponse.json({ message: "Household updated" }, { status: 200 });
 }
