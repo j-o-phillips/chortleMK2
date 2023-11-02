@@ -17,9 +17,9 @@ function SideBar() {
               </Link>
               <Link
                 style={{ display: "block" }}
-                href={`/${user.households[0]}/addMember`}
+                href={`/${user.households[0]}/members`}
               >
-                <NavItem icon="👤" label="Add Member" />
+                <NavItem icon="👤" label="Members" />
               </Link>
               <Link
                 style={{ display: "block" }}
