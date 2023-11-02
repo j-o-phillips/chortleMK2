@@ -1,12 +1,17 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import style from "./ChoreCard.module.css";
 import CreateHousehold from "@/app/createHousehold/page";
-
 function ChoreCard({ data, onDeleteChore, householdId }) {
+import Link from "next/link";
+import { UserContext } from "@/context/UserContext";
+
+function ChoreCard({ data }) {
+  const { user } = useContext(UserContext);
+
   const [isCompleted, setIsCompleted] = useState(false);
-  const [assigneeData, setAssigneeData] = useState([])
+  const [assigneeData, setAssigneeData] = useState([]);
 
   const handleMarkAsDone = async () => {
     const userConfirmed = window.confirm("Are you sure you want to mark this chore as completed?");
@@ -35,11 +40,13 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 }
 
   useEffect(() => {
-    const assigneeIds = data.assignees
+    const assigneeIds = data.assignees;
 
     Promise.all(
       assigneeIds.map(async (assigneeId) => {
-        const response = await fetch(`http://localhost:3000/api/users/${assigneeId}`);
+        const response = await fetch(
+          `http://localhost:3000/api/users/${assigneeId}`
+        );
         if (response.ok) {
           const userData = await response.json();
           return userData;
@@ -48,18 +55,20 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
       })
     )
       .then((userDataArray) => {
-        const validUserData = userDataArray.filter((userData) => userData !== null);
-        setAssigneeData(validUserData)
+        const validUserData = userDataArray.filter(
+          (userData) => userData !== null
+        );
+        setAssigneeData(validUserData);
       })
       .catch((error) => {
-        console.error('Error fetching assignee data', error);
+        console.error("Error fetching assignee data", error);
       });
   }, []);
 
   function formatDueDate(dateString) {
     const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-based, so add 1
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-based, so add 1
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
@@ -79,6 +88,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
   }
 
   const cardColor = progressBarVariant(data.deadline);
+
 
   const handleDeleteChore = async () => {
     try {
@@ -133,10 +143,11 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
           </button>
           <div className={style.delete}>
           <button onClick={handleDeleteChore}>Delete</button>
+
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 export default ChoreCard;

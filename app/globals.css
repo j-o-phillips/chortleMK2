@@ -18,3 +18,11 @@ div.main-container {
   width: max-content;
   color: white;
 }
+
+div.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}

@@ -50,3 +50,15 @@ export async function POST(req, { params }) {
     return NextResponse.json({ message: "User Added" }, { status: 200 });
   }
 }
+
+export async function GET (req, {params}) {
+  try {
+    const {householdId} = params
+    await connectMongoDB()
+    const members = await User.find({households: householdId})
+    console.log(members);
+    return NextResponse.json({members})
+  } catch (error) {
+    NextResponse.error(error)
+  }
+}
