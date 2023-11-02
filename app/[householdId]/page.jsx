@@ -41,10 +41,9 @@ function Dashboard() {
     return <p>loading...</p>;
   }
   if (session.status === "authenticated") {
-
     const sortedChores = [...chores].sort((a, b) => {
-      return new Date(a.deadline) - new Date(b.deadline)
-    })
+      return new Date(a.deadline) - new Date(b.deadline);
+    });
 
     return (
       <>
