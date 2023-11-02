@@ -16,3 +16,7 @@ button.newchore {
     padding: 10px;
 }
 
+div.main {
+    display:  flex;
+   
+}
