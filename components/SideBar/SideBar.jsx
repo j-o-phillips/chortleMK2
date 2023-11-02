@@ -27,6 +27,12 @@ function SideBar() {
               >
                 <NavItem icon="🧹" label="Create Chore" />
               </Link>
+              <Link
+                style={{ display: "block" }}
+                href={`/${user.households[0]}/allChores`}
+              >
+                <NavItem icon="☑️" label="See all chores" />
+              </Link>
 
               <button
                 style={{ display: "block" }}
