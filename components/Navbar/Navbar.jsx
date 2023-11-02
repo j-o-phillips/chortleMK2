@@ -12,13 +12,12 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 function Navbar() {
-  // const { user } = useContext(UserContext);
   const session = useSession();
 
 
   return (
     <nav className={style.nav}>
-      <Image  src="/_next/static/media/chortleman.png" width={60 } height={60} alt="chortleman" className={style.logo}></Image>
+      <Image  src="/_next/static/media/chortleman.png" width={60 } height={6} alt="chortleman" className={style.logo}></Image>
       {session.status === "authenticated" && (
         <div className={style.end}>
           {/* <h4>{session.data.user.name}</h4> */}

@@ -73,7 +73,7 @@ function Dashboard() {
         <div className={style.page}>
           <div className={style.householdTitle}>
             <div className={style.householdName}>{householdName}</div>
-            <div className={style.household}>Household</div>
+            {/* <div className={style.household}>Household</div> */}
           </div>
           <h1 className={style.h1}>Household Chores</h1>
 
