@@ -12,14 +12,14 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
   const [isCompleted, setIsCompleted] = useState(false);
   const [assigneeData, setAssigneeData] = useState([]);
 
-  const handleMarkAsDone = async () => {
+  const handleMarkAsDone = async (e) => {
+    e.preventDefault();
     const userConfirmed = window.confirm(
       "Are you sure you want to mark this chore as completed?"
     );
 
     if (userConfirmed) {
       try {
-
         const response = await fetch(
           `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
           {
@@ -30,7 +30,6 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
             },
           }
         );
-
 
         if (response.ok) {
           setIsCompleted(true);
@@ -43,9 +42,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
     } else {
       console.log("Chore completion canceled");
     }
-
   };
-
 
   useEffect(() => {
     const assigneeIds = data.assignees;
@@ -97,7 +94,8 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 
   const cardColor = progressBarVariant(data.deadline);
 
-  const handleDeleteChore = async () => {
+  const handleDeleteChore = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(
         `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
@@ -109,7 +107,6 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
       if (response.ok) {
         onDeleteChore(data._id);
       } else {
-
         console.error("Chore deletion failed", error);
       }
     } catch (error) {
@@ -118,7 +115,6 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
   };
 
   return (
-
     <>
       <Link href={`/${user.households[0]}/${data._id}`}>
         <div className={`${style.card} ${cardColor}`}>
@@ -158,7 +154,6 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
               <div className={style.delete}>
                 <button onClick={handleDeleteChore}>Delete</button>
               </div>
-
             </div>
           </div>
         </div>
