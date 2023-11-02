@@ -82,6 +82,7 @@ function Chore({ params }) {
     return (
       <>
         <div className={styles.container}>
+          <div className={styles.display}>
           <h1 className={styles.title}>{chore.name}</h1>
           <h2 className={styles.deadline}>
             Complete by: {formatDate(chore.deadline)}
@@ -91,6 +92,7 @@ function Chore({ params }) {
           <p className={styles.created}>
             Created on: {formatDate(chore.createdAt)}
           </p>
+          </div>
           <button className="button" onClick={toggleEdit}>
             Toggle Edit Chore
           </button>
