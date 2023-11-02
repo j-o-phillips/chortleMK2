@@ -3,13 +3,13 @@ import style from "./SideBar.module.css";
 import { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
 import Link from "next/link";
+
 function SideBar() {
   const { user } = useContext(UserContext);
 
   return (
     <>
       {user && (
-        <div className={style.container}>
           <div className={style.sidebar}>
             <div className={style.icons}>
               <Link href={`/${user.households[0]}`}>
@@ -43,7 +43,6 @@ function SideBar() {
                 Print
               </button> */}
             </div>
-            <div className={style.content}></div>
             <div className={style.copyright}>&copy; 2023 Chores App</div>
             <div className={style.design}>
               <p>Designed by:</p>
@@ -51,7 +50,6 @@ function SideBar() {
               <p>(SEI 75)</p>
             </div>
           </div>
-        </div>
       )}
     </>
   );
