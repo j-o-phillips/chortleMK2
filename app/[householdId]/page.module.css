@@ -3,7 +3,7 @@
     align-items: baseline; 
     justify-content: center;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin: 2px;
+    margin: 2px 10px 2px 2px;
 }
 
 .householdName {
@@ -11,15 +11,6 @@
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     vertical-align: baseline;
-    margin-right: 10px; 
-}
-
-.household {
-    font-size: 25px;
-    text-align: center;
-    align-self: baseline; 
-    justify-content: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .h1 {

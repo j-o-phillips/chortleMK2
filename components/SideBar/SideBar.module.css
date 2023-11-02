@@ -11,13 +11,16 @@
     transition: 0.3s;
     border-right: solid 1px #7C96AB;
     text-align: center;
-    width: 15vw;
+    width: 16.5vw;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    overflow: auto;
 }
 
 .icons {
     padding: 10px;
     margin-top: 10px;
     justify-content: center;
+    width: 15vw;
 }
 
 .copyright {

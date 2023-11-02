@@ -1,17 +1,20 @@
 .page {
-  margin: 10px;
+  margin: 10px 15vw 10px 15vw;
 }
+
 .h1 {
+  font-size: 2em;
   text-align: center;
-  margin-bottom: 10px;
-  font-size: larger;
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 }
 
 .form {
   border: 1px solid darkgrey;
   border-radius: 10px;
   padding: 20px;
-  background-color: rgba(211, 211, 211, 0.4);
+  background-color: rgba(221, 218, 218, 0.4);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
@@ -23,6 +26,7 @@
   width: 100%;
   margin: 1px 0;
 }
+
 .textarea {
   border: 1px solid darkgrey;
   border-radius: 5px;
@@ -48,7 +52,7 @@
 .add {
   width: 40%;
   padding: 10px;
-  background-color: #0078d4;
+  background-color: #7c96ab;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -57,7 +61,7 @@
 }
 
 .add:hover {
-  background-color: #005a9e;
+  background-color: #546a7c;
 }
 
 .ul {
@@ -90,7 +94,7 @@
   width: 25%;
   padding: 10px;
   margin: 10px auto 0 0;
-  background-color: #0078d4;
+  background-color: #7c96ab;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -99,5 +103,19 @@
 }
 
 .submit:hover {
-  background-color: #005a9e;
+  background-color: #546a7c;
+}
+
+
+.button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #7c96ab;
+  border: none;
+  border-radius: 5px;
+  width: max-content;
+  color: white;
+}
+.button:hover {
+  background-color: #546a7c;
 }

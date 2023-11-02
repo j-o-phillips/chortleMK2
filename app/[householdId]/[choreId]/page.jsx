@@ -1,5 +1,5 @@
 "use client";
-import styles from "./page.module.css";
+import style from "./page.module.css";
 import { UserContext } from "@/context/UserContext";
 import React, { useState, useEffect, useContext } from "react";
 import { useSession } from "next-auth/react";
@@ -26,7 +26,6 @@ function Chore({ params }) {
 
   async function handleSubmitEdit(e) {
     e.preventDefault();
-    console.log(newChoreName, newChoreDesc, newChoreDeadline);
     const data = {
       name: newChoreName,
       description: newChoreDeadline,
@@ -34,7 +33,11 @@ function Chore({ params }) {
       assignees: chore.assignees,
       household: chore.household,
     };
-    console.log(data);
+    const userConfirmed = window.confirm(
+      "Are you sure you want to save this changes?"
+    );
+
+    if (userConfirmed) {
     try {
       const res = await fetch(
         `http://localhost:3000/api/household/${user.households[0]}/chores/${choreId}`,
@@ -53,6 +56,7 @@ function Chore({ params }) {
       console.log(error);
     }
   }
+}
   async function getChore() {
     loading = true;
     try {
@@ -68,6 +72,52 @@ function Chore({ params }) {
     }
   }
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-based, so add 1
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
+  function progressBarVariant(deadline) {
+    if (!deadline) {
+      return style.primary;
+    }
+
+    const today = new Date();
+    const timeToDeadline = new Date(deadline) - today;
+    const daysToDeadline = timeToDeadline / (1000 * 60 * 60 * 24);
+
+    if (daysToDeadline <= 0) {
+      return style.danger;
+    } else if (daysToDeadline <= 3) {
+      return style.warning;
+    }
+    return style.primary;
+  }
+
+  const cardColor = progressBarVariant(chore.deadline)
+
+  function getPriorityText(deadline) {
+    if (!deadline) {
+      return 'Unknown';
+    }
+
+    const today = new Date();
+    const timeToDeadline = new Date(deadline) - today;
+    const daysToDeadline = timeToDeadline / (1000 * 60 * 60 * 24);
+
+    if (daysToDeadline <= 0) {
+      return 'High';
+    } else if (daysToDeadline <= 3) {
+      return 'Medium';
+    }
+
+    return 'Low';
+  }
+
   useEffect(() => {
     getChore();
   }, []);
@@ -80,30 +130,30 @@ function Chore({ params }) {
   }
   if (session.status === "authenticated") {
     return (
-      <>
-        <div className={styles.container}>
-          <div className={styles.display}>
-          <h1 className={styles.title}>{chore.name}</h1>
-          <h2 className={styles.deadline}>
+      <> 
+        <div className={style.container}>
+          <div className={`${style.display} ${cardColor}`}>
+          <h1 className={style.title}>{chore.name}</h1>
+          <h2 className={style.deadline}>
             Complete by: {formatDate(chore.deadline)}
           </h2>
-          <p className={styles.description}>{chore.description}</p>
-
-          <p className={styles.created}>
+          <p className={style.description}>{chore.description}</p>
+          <p className={style.created}>
             Created on: {formatDate(chore.createdAt)}
           </p>
+          <p className={style.priorityText}>Priority: {getPriorityText(chore.deadline)}</p>
           </div>
           <button className="button" onClick={toggleEdit}>
-            Toggle Edit Chore
+            Edit This Chore
           </button>
           {editVisible && (
-            <div className={styles.formContainer}>
-              <div className={styles.form}>
+            <div className={style.formContainer}>
+              <div className={style.form}>
                 <form>
                   <input
-                    className={styles.input}
+                    className={style.input}
                     type="text"
-                    placeholder={newChoreName}
+                    placeholder={chore.name}
                     value={newChoreName}
                     onChange={(e) => {
                       setNewChoreName(e.target.value);
@@ -111,9 +161,9 @@ function Chore({ params }) {
                   />
                   <br />
                   <textarea
-                    className={styles.textarea}
+                    className={style.textarea}
                     type="text"
-                    placeholder={newChoreDesc}
+                    placeholder={chore.description}
                     rows={2}
                     value={newChoreDesc}
                     onChange={(e) => {
@@ -122,7 +172,7 @@ function Chore({ params }) {
                   />{" "}
                   <br />
                   <DatePicker
-                    className={styles.input}
+                    className={style.input}
                     placeholderText="Due Date"
                     dateFormat="dd-MM-yyyy"
                     selected={newChoreDeadline}

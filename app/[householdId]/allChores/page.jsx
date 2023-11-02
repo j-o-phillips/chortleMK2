@@ -32,7 +32,6 @@ function allChores() {
         if (response.ok) {
           const data = await response.json();
           const householdName = data.allUsers.name;
-          console.log(`Household Name: ${householdName}`);
           setHouseholdName(householdName)
         } else {
           console.error("Error fetching household data");
@@ -70,7 +69,7 @@ function allChores() {
           <div className={style.householdTitle}>
             <div className={style.householdName}>"{householdName}"</div>
           </div>
-          <h1 className={style.h1}>Household Chores</h1>
+          <h1 className={style.h1}>All Household Chores</h1>
 
             {sortedChores.map((chore) => {
             
