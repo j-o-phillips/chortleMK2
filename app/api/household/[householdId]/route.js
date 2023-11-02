@@ -9,25 +9,7 @@ export async function PUT(req, { params }) {
     console.log(householdId);
     const { memberId } = await req.json();
     console.log(memberId)
-    // await connectMongoDB();
-    const mongoMember = User.findOne({_id: memberId})
-
-    // const response = await Household.updateOne(
-    //   { _id: householdId },
-    //   { $pull: { users: { "_id": memberId } } },
-    // );
-    // console.log(response);
-    // const updatedHousehold = await Household.findByIdAndUpdate(householdId, { name, users });
-
-    // if (!updatedHousehold) {
-    //   return NextResponse.json(
-    //     { error: "Household not found" },
-    //     { status: 404 }
-    //   );
-    // }
     await Household.updateOne({_id:householdId}, {$pull: {users: memberId}});
-    // Household.users.pull({_id:memberId})
-
     return NextResponse.json(
       { message: "Household updated" },
       { status: 200 }

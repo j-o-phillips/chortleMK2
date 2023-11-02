@@ -1,3 +1,7 @@
+.container {
+
+    justify-content: center;
+}
 .sidebar {
     display: flex;
     justify-content: center;
@@ -12,6 +16,7 @@
 .icons {
     padding: 10px;
     margin-top: 10px;
+    justify-content: center;
 }
 
 .copyright {
@@ -30,6 +35,8 @@
     color: #888;
 }
 .content {
+    flex: 1; 
     display: flex;
     justify-content: center;
+    overflow: auto;
 }
