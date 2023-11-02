@@ -19,7 +19,7 @@ function SideBar() {
                 style={{ display: "block" }}
                 href={`/${user.households[0]}/members`}
               >
-                <NavItem icon="👤" label="Members" />
+                <NavItem icon="👤" label="Edit Household" />
               </Link>
               <Link
                 style={{ display: "block" }}
@@ -48,7 +48,8 @@ function SideBar() {
             <div className={style.design}>
               <p>Designed by:</p>
               <p>Hairdynamics Team</p>
-              <p>(SEI 75)</p></div>
+              <p>(SEI 75)</p>
+            </div>
           </div>
         </div>
       )}
