@@ -26,6 +26,10 @@ function Dashboard() {
     }
   }
 
+  const handleDeleteChore = (choreId) => {
+    setChores(chores.filter((chore) => chore._id !== choreId));
+  };
+
   useEffect(() => {
     getChores();
   }, []);
@@ -37,6 +41,11 @@ function Dashboard() {
     return <p>loading...</p>;
   }
   if (session.status === "authenticated") {
+
+    const sortedChores = [...chores].sort((a, b) => {
+      return new Date(a.deadline) - new Date(b.deadline)
+    })
+
     return (
       <>
         <div className={style.page}>
@@ -48,12 +57,18 @@ function Dashboard() {
           >
             print chores
           </button>
-          {chores.map((chore) => {
-            return (
-              <ChoreCard
-                key={chore._id}
-                data={chore}
-              />)
+          {sortedChores.map((chore) => {
+            if (!chore.completed) {
+              return (
+                <ChoreCard
+                  key={chore._id}
+                  data={chore}
+                  householdId={user.households[0]}
+                  onDeleteChore={handleDeleteChore}
+                />
+              );
+            }
+            return null;
           })}
         </div>
       </>

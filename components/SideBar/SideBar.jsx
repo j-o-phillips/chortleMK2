@@ -37,10 +37,13 @@ function SideBar() {
                 Print
               </button>
             </div>
+            <div className={style.content}></div>
             <div className={style.copyright}>&copy; 2023 Chores App</div>
-            <div className={style.design}>Designed by:<br />Hairdynamics Team<br />(SEI 75)</div>
+            <div className={style.design}>
+              <p>Designed by:</p>
+              <p>Hairdynamics Team</p>
+              <p>(SEI 75)</p></div>
           </div>
-          <div className={style.content}></div>
         </div>
       )}
     </>

@@ -1,4 +1,6 @@
 .sidebar {
+    display: flex;
+    justify-content: center;
     height: 93vh;
     background-color: #BFCCB5;
     overflow: auto;
@@ -26,5 +28,8 @@
     font-size: 11px;
     bottom: 2px;
     color: #888;
-    left: 20px;
+}
+.content {
+    display: flex;
+    justify-content: center;
 }
