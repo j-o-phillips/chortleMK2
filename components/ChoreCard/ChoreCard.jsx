@@ -9,7 +9,6 @@ import { UserContext } from "@/context/UserContext";
 
 function ChoreCard({ data, onDeleteChore, householdId }) {
   const { user } = useContext(UserContext);
-
   const [isCompleted, setIsCompleted] = useState(false);
   const [assigneeData, setAssigneeData] = useState([]);
 
@@ -20,6 +19,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 
     if (userConfirmed) {
       try {
+
         const response = await fetch(
           `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
           {
@@ -30,6 +30,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
             },
           }
         );
+
 
         if (response.ok) {
           setIsCompleted(true);
@@ -42,7 +43,9 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
     } else {
       console.log("Chore completion canceled");
     }
+
   };
+
 
   useEffect(() => {
     const assigneeIds = data.assignees;
@@ -106,6 +109,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
       if (response.ok) {
         onDeleteChore(data._id);
       } else {
+
         console.error("Chore deletion failed", error);
       }
     } catch (error) {
@@ -114,6 +118,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
   };
 
   return (
+
     <>
       <Link href={`/${user.households[0]}/${data._id}`}>
         <div className={`${style.card} ${cardColor}`}>
@@ -153,6 +158,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
               <div className={style.delete}>
                 <button onClick={handleDeleteChore}>Delete</button>
               </div>
+
             </div>
           </div>
         </div>
@@ -160,4 +166,5 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
     </>
   );
 }
+
 export default ChoreCard;
