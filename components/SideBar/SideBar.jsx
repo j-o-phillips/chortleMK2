@@ -34,14 +34,14 @@ function SideBar() {
                 <NavItem icon="☑️" label="See all chores" />
               </Link>
 
-              <button
+              {/* <button
                 style={{ display: "block" }}
                 onClick={() => {
                   console.log(user);
                 }}
               >
                 Print
-              </button>
+              </button> */}
             </div>
             <div className={style.content}></div>
             <div className={style.copyright}>&copy; 2023 Chores App</div>

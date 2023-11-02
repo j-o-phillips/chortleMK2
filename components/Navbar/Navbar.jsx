@@ -20,7 +20,7 @@ function Navbar() {
       <div className={style.logo}>Image</div>
       {session.status === "authenticated" && (
         <div className={style.end}>
-          <h4>{session.data.user.name}</h4>
+          {/* <h4>{session.data.user.name}</h4> */}
           <img
             src={session.data.user.image}
             alt="image"
