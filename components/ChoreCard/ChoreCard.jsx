@@ -1,9 +1,7 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import style from "./ChoreCard.module.css";
-import CreateHousehold from "@/app/createHousehold/page";
-
 import Link from "next/link";
 import { UserContext } from "@/context/UserContext";
 
@@ -47,6 +45,10 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
   useEffect(() => {
     const assigneeIds = data.assignees;
 
+    if (data.completed) {
+      setIsCompleted(true);
+    }
+
     Promise.all(
       assigneeIds.map(async (assigneeId) => {
         const response = await fetch(
@@ -64,10 +66,12 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
           (userData) => userData !== null
         );
         setAssigneeData(validUserData);
+         
       })
       .catch((error) => {
         console.error("Error fetching assignee data", error);
       });
+      
   }, []);
 
   function formatDueDate(dateString) {
@@ -78,8 +82,12 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 
     return `${day}-${month}-${year}`;
   }
-  //add modal with specific chore details to each chore card
+  
   function progressBarVariant(deadline) {
+    if (!deadline) {
+      return style.primary
+    }
+
     const today = new Date();
     const timeToDeadline = new Date(deadline) - today;
     const daysToDeadline = timeToDeadline / (1000 * 60 * 60 * 24);
@@ -114,6 +122,8 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
     }
   };
 
+  console.log(assigneeData);
+
   return (
     <>
       <Link href={`/${user.households[0]}/${data._id}`}>
@@ -132,13 +142,14 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
             <div className={style.pictures}>
               {assigneeData.map((foundUser, index) => (
                 <div key={index}>
-                  <Image
-                    src={foundUser.imgURL}
-                    alt={foundUser.name}
-                    width={25}
-                    height={25}
-                    required="true"
+
+                  <img
+                    src={user.imgURL}
+                    alt={user.name}
+                    className={style.photo}
+
                   />
+                  {user.name}
                 </div>
               ))}
             </div>
@@ -148,6 +159,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
               <button
                 className={isCompleted ? style.completed : style.markDone}
                 onClick={handleMarkAsDone}
+                disabled={isCompleted}
               >
                 {isCompleted ? "Completed" : "Close Chore"}
               </button>
