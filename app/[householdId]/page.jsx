@@ -14,6 +14,7 @@ function Dashboard() {
   const { user } = useContext(UserContext);
   const [chores, setChores] = useState([]);
   const [householdName, setHouseholdName] = useState("");
+  const [completedChores, setCompletedChores] = useState([])
 
   async function getChores() {
     try {
@@ -35,7 +36,6 @@ function Dashboard() {
       if (response.ok) {
         const data = await response.json();
         const householdName = data.allUsers.name;
-        console.log(`Household Name: ${householdName}`);
         setHouseholdName(householdName);
       } else {
         console.error("Error fetching household data");
@@ -47,6 +47,12 @@ function Dashboard() {
 
   const handleDeleteChore = (choreId) => {
     setChores(chores.filter((chore) => chore._id !== choreId));
+  };
+  const handleMarkAsDone = (choreId) => {
+    const updatedChores = chores.filter((chore) => chore._id !== choreId);
+    const completedChore = chores.find((chore) => chore._id === choreId);
+    setChores(updatedChores);
+    setCompletedChores([...completedChores, completedChore]);
   };
 
   useEffect(() => {
@@ -85,6 +91,7 @@ function Dashboard() {
                   data={chore}
                   householdId={user.households[0]}
                   onDeleteChore={handleDeleteChore}
+                  onMarkAsDone={handleMarkAsDone}
                 />
               );
             }

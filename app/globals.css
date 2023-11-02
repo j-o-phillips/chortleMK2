@@ -5,7 +5,7 @@
 div.main-container {
   display: grid;
   height: 93vh;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 5fr;
   background-color: #faf9f8;
 }
 
@@ -17,6 +17,9 @@ div.main-container {
   border-radius: 5px;
   width: max-content;
   color: white;
+}
+.button:hover {
+  background-color: #546a7c;
 }
 
 div.main {

@@ -62,9 +62,11 @@ const NavItem = ({ icon, label }) => (
       backgroundColor: "beige",
       borderRadius: "5px",
       padding: "7px",
+      paddingRight: "10px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      width: "14vw",
     }}
   >
     <span style={{ marginRight: "10px" }}>{icon}</span>

@@ -4,6 +4,7 @@
 import LogOutBtn from "../LogOutBtn/LogOutBtn";
 import style from "./Navbar.module.css";
 import Image from "next/image";
+import { useState } from "react";
 
 // import { UserContext } from "@/context/UserContext";
 
@@ -13,15 +14,21 @@ import { useSession } from "next-auth/react";
 
 function Navbar() {
   const session = useSession();
+  const [showUserName, setShowUserName] = useState(false)
+
+  const toggleUserName = () => {
+    setShowUserName(!showUserName);
+  };
 
 
   return (
     <nav className={style.nav}>
-      <Image  src="/_next/static/media/chortleman.png" width={60 } height={6} alt="chortleman" className={style.logo}></Image>
+      <div className={style.hello}>SEI-75</div>
+      {/* <Image  src="/_next/static/media/chortleman.png" width={60 } height={6} alt="chortleman" className={style.logo}></Image> */}
       {session.status === "authenticated" && (
         <div className={style.end}>
-          {/* <h4>{session.data.user.name}</h4> */}
-          <img
+          {showUserName && <h4 className={style.userName}>{session.data.user.name}</h4>}
+          <img onClick={toggleUserName}
             src={session.data.user.image}
             alt="image"
             className={style.image}
@@ -29,7 +36,6 @@ function Navbar() {
           <LogOutBtn />
         </div>
       )}
-
     </nav>
   );
 }

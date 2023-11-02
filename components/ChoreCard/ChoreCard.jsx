@@ -5,7 +5,7 @@ import style from "./ChoreCard.module.css";
 import Link from "next/link";
 import { UserContext } from "@/context/UserContext";
 
-function ChoreCard({ data, onDeleteChore, householdId }) {
+function ChoreCard({ data, onDeleteChore, householdId, onMarkAsDone }) {
   const { user } = useContext(UserContext);
   const [isCompleted, setIsCompleted] = useState(false);
   const [assigneeData, setAssigneeData] = useState([]);
@@ -30,7 +30,7 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
         );
 
         if (response.ok) {
-          setIsCompleted(true);
+          onMarkAsDone(data._id);
         } else {
           console.error("Chore completion failed", error);
         }
@@ -102,6 +102,10 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
 
   const handleDeleteChore = async (e) => {
     e.preventDefault();
+    const userConfirmed = window.confirm(
+      "Are you sure you want to delete this chore?"
+    )
+    if (userConfirmed) {
     try {
       const response = await fetch(
         `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
@@ -118,15 +122,15 @@ function ChoreCard({ data, onDeleteChore, householdId }) {
     } catch (error) {
       console.error("Error deleting chore", error);
     }
+  }
   };
 
-  console.log(assigneeData);
 
   return (
     <>
       <Link href={`/${user.households[0]}/${data._id}`}>
         <div className={`${style.card} ${cardColor}`}>
-          <h3 className={style.h3}>Title: {data.name}</h3>
+          <h3 className={style.h3}>Chore: {data.name}</h3>
           <div className={style.chore}>
             <h5 className={style.h5}>Description:</h5>
             <p>{data.description}</p>
