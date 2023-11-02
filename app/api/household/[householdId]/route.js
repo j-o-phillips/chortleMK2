@@ -2,32 +2,19 @@ import Household from "@/models/household";
 import User from "@/models/users";
 import connectMongoDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export async function PUT(req, { params }) {
-  try {
     const { householdId } = params;
-    const { newName: name, newUsers: users } = await req.json();
-    await connectMongoDB();
-    const updatedHousehold = await Household.findByIdAndUpdate(householdId, { name, users });
-
-    if (!updatedHousehold) {
-      return NextResponse.json(
-        { error: "Household not found" },
-        { status: 404 }
-      );
-    }
-
+    console.log(householdId);
+    const { memberId } = await req.json();
+    console.log(memberId)
+    await Household.updateOne({_id:householdId}, {$pull: {users: memberId}});
     return NextResponse.json(
-      { message: "Household updated", household: updatedHousehold },
+      { message: "Household updated" },
       { status: 200 }
     );
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Error updating household" },
-      { status: 500 }
-    );
   }
-}
 
 export async function GET(req, { params }) {
   try {
