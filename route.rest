@@ -10,7 +10,7 @@
 # }
 
 
-# GET http://localhost:3000/api/household/654233ed281c7283e1fd4c61/chores/654259ff79cef34cb879c68a
+GET http://localhost:3000/api/household/654233ed281c7283e1fd4c61
 
 
 
