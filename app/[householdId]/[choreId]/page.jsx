@@ -97,11 +97,11 @@ function Chore({ params }) {
     return style.primary;
   }
 
-  const cardColor = progressBarVariant(chore.deadline)
+  const cardColor = progressBarVariant(chore.deadline);
 
   function getPriorityText(deadline) {
     if (!deadline) {
-      return 'Unknown';
+      return "Unknown";
     }
 
     const today = new Date();
@@ -109,17 +109,17 @@ function Chore({ params }) {
     const daysToDeadline = timeToDeadline / (1000 * 60 * 60 * 24);
 
     if (daysToDeadline <= 0) {
-      return 'High';
+      return "High";
     } else if (daysToDeadline <= 3) {
-      return 'Medium';
+      return "Medium";
     }
 
-    return 'Low';
+    return "Low";
   }
 
   useEffect(() => {
     getChore();
-  }, []);
+  }, [getChore]);
 
   if (session.status === "unauthenticated") {
     router.push("/");
@@ -129,18 +129,20 @@ function Chore({ params }) {
   }
   if (session.status === "authenticated") {
     return (
-      <> 
+      <>
         <div className={style.container}>
           <div className={`${style.display} ${cardColor}`}>
-          <h1 className={style.title}>{chore.name}</h1>
-          <h2 className={style.deadline}>
-            Complete by: {formatDate(chore.deadline)}
-          </h2>
-          <p className={style.description}>{chore.description}</p>
-          <p className={style.created}>
-            Created on: {formatDate(chore.createdAt)}
-          </p>
-          <p className={style.priorityText}>Priority: {getPriorityText(chore.deadline)}</p>
+            <h1 className={style.title}>{chore.name}</h1>
+            <h2 className={style.deadline}>
+              Complete by: {formatDate(chore.deadline)}
+            </h2>
+            <p className={style.description}>{chore.description}</p>
+            <p className={style.created}>
+              Created on: {formatDate(chore.createdAt)}
+            </p>
+            <p className={style.priorityText}>
+              Priority: {getPriorityText(chore.deadline)}
+            </p>
           </div>
           <button className="button" onClick={toggleEdit}>
             Edit This Chore
