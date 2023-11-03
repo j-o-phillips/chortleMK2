@@ -17,7 +17,7 @@ function AllChores() {
   async function getChores() {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}/chores`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores`
       );
       const data = await response.json();
       setChores(data.chores);
@@ -29,7 +29,7 @@ function AllChores() {
   async function getHouseholdData() {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}`
       );
       if (response.ok) {
         const data = await response.json();

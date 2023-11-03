@@ -23,7 +23,7 @@ function CreateHousehold() {
         user: user._id,
       };
 
-      const res = await fetch("http://localhost:3000/api/household", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

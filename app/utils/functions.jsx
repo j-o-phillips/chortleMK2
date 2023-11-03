@@ -1,7 +1,7 @@
 async function deleteChore(choreId) {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/household/${householdId}/chores/${choreId}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${householdId}/chores/${choreId}`,
       {
         method: "DELETE",
       }

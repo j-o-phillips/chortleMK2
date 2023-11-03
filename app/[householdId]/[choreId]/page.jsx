@@ -3,7 +3,6 @@ import style from "./page.module.css";
 import { UserContext } from "@/context/UserContext";
 import React, { useState, useEffect, useContext } from "react";
 import { useSession } from "next-auth/react";
-import { formatDate } from "@/app/utils/functions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/navigation";
@@ -40,7 +39,7 @@ function Chore({ params }) {
     if (userConfirmed) {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}/chores/${choreId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores/${choreId}`,
         {
           method: "PUT",
           headers: {
@@ -61,7 +60,7 @@ function Chore({ params }) {
     loading = true;
     try {
       const response = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}/chores/${choreId}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores/${choreId}`
       );
       const data = await response.json();
       console.log(data.chore);

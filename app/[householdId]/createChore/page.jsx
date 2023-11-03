@@ -24,7 +24,7 @@ function CreateChore() {
   useEffect(() => {
     const fetchHouseholdMembers = async () => {
       try {
-        const response = await fetch(`/api/household/${householdId}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${householdId}`);
         if (response.ok) {
           const data = await response.json();
           const members = data.allUsers.users;
@@ -78,7 +78,7 @@ function CreateChore() {
       const data = { ...formData, assignees: formData.assignees };
 
       const res = await fetch(
-        `http://localhost:3000/api/household/${householdId}/chores`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${householdId}/chores`,
         {
           method: "POST",
           headers: {

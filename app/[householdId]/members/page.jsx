@@ -16,7 +16,7 @@ function Members() {
   //* Get existing members
   async function getMembers() {
     const res = await fetch(
-      `http://localhost:3000/api/household/${user.households[0]}/members`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/members`
     );
     const data = await res.json();
     setMembersList(data.members);
@@ -40,7 +40,7 @@ function Members() {
       }
       try {
         const res = await fetch(
-          `http://localhost:3000/api/household/${user.households[0]}/members`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/members`,
           {
             method: "POST",
             headers: {
@@ -73,7 +73,7 @@ function Members() {
     if (userConfirmed) {
       try {
         await fetch(
-          `http://localhost:3000/api/household/${user.households[0]}/members`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/members`,
           {
             method: "PUT",
             headers: {
@@ -98,7 +98,7 @@ function Members() {
     if (userConfirmed) {
       try {
         await fetch(
-          `http://localhost:3000/api/household/${user.households[0]}`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}`,
           {
             method: "PUT",
             headers: {

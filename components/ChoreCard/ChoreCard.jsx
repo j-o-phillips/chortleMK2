@@ -19,7 +19,7 @@ function ChoreCard({ data, onDeleteChore, householdId, onMarkAsDone }) {
     if (userConfirmed) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${householdId}/chores/${data._id}`,
           {
             method: "PATCH",
             body: JSON.stringify({ completed: true }),
@@ -52,7 +52,7 @@ function ChoreCard({ data, onDeleteChore, householdId, onMarkAsDone }) {
     Promise.all(
       assigneeIds.map(async (assigneeId) => {
         const response = await fetch(
-          `http://localhost:3000/api/users/${assigneeId}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${assigneeId}`
         );
         if (response.ok) {
           const userData = await response.json();
@@ -108,7 +108,7 @@ function ChoreCard({ data, onDeleteChore, householdId, onMarkAsDone }) {
     if (userConfirmed) {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/household/${householdId}/chores/${data._id}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${householdId}/chores/${data._id}`,
         {
           method: "DELETE",
         }
