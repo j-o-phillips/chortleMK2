@@ -23,13 +23,16 @@ function CreateHousehold() {
         user: user._id,
       };
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (res.ok) {
         //get househild id from response
@@ -44,7 +47,7 @@ function CreateHousehold() {
           imgURL: user.imgURL,
           households: [response.household._id],
         });
-        // router.push(`/${response.household._id}`);
+        router.push(`/${response.household._id}`);
       } else {
         throw new Error("Failed to create new household");
       }

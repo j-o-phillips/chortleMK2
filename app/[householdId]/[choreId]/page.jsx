@@ -37,25 +37,25 @@ function Chore({ params }) {
     );
 
     if (userConfirmed) {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores/${choreId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores/${choreId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+        if (res.status === 200) {
+          router.push(`/${user.households[0]}`);
         }
-      );
-      if (res.status === 200) {
-        router.push(`/${user.households[0]}`);
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   }
-}
   async function getChore() {
     loading = true;
     try {
@@ -119,7 +119,7 @@ function Chore({ params }) {
 
   useEffect(() => {
     getChore();
-  }, [getChore]);
+  }, []);
 
   if (session.status === "unauthenticated") {
     router.push("/");
