@@ -35,7 +35,7 @@ export async function POST(req, { params }) {
 export async function GET(req, { params }) {
   try {
     const { householdId } = params;
-    console.log(householdId);
+
     if (!householdId) {
       return NextResponse.json(
         { error: "Missing householdId" },
@@ -46,7 +46,7 @@ export async function GET(req, { params }) {
     await connectMongoDB();
 
     const chores = await Chore.find({ household: householdId });
-    console.log(chores);
+
     return NextResponse.json({ chores }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
