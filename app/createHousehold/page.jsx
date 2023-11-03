@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 function CreateHousehold() {
   const [householdName, setHouseholdName] = useState("");
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const router = useRouter();
 
   async function handleCreateHousehold(e) {
@@ -35,7 +35,16 @@ function CreateHousehold() {
         //get househild id from response
         const response = await res.json();
         // await setHousehold(response.household);
-        router.push(`/${response.household._id}`);
+        //we could set user context here
+
+        setUser({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          imgURL: user.imgURL,
+          households: [response.household._id],
+        });
+        // router.push(`/${response.household._id}`);
       } else {
         throw new Error("Failed to create new household");
       }

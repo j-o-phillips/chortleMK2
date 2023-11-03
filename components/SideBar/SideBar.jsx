@@ -10,46 +10,46 @@ function SideBar() {
   return (
     <>
       {user && (
-          <div className={style.sidebar}>
-            <div className={style.icons}>
-              <Link href={`/${user.households[0]}`}>
-                <NavItem icon="🏠" label="My Household" />
-              </Link>
-              <Link
-                style={{ display: "block" }}
-                href={`/${user.households[0]}/members`}
-              >
-                <NavItem icon="👤" label="Edit Household" />
-              </Link>
-              <Link
-                style={{ display: "block" }}
-                href={`/${user.households[0]}/createChore`}
-              >
-                <NavItem icon="🧹" label="Create Chore" />
-              </Link>
-              <Link
-                style={{ display: "block" }}
-                href={`/${user.households[0]}/allChores`}
-              >
-                <NavItem icon="☑️" label="See all chores" />
-              </Link>
+        <div className={style.sidebar}>
+          <div className={style.icons}>
+            <Link href={`/${user.households[0]}`}>
+              <NavItem icon="🏠" label="My Household" />
+            </Link>
+            <Link
+              style={{ display: "block" }}
+              href={`/${user.households[0]}/members`}
+            >
+              <NavItem icon="👤" label="Edit Household" />
+            </Link>
+            <Link
+              style={{ display: "block" }}
+              href={`/${user.households[0]}/createChore`}
+            >
+              <NavItem icon="🧹" label="Create Chore" />
+            </Link>
+            <Link
+              style={{ display: "block" }}
+              href={`/${user.households[0]}/allChores`}
+            >
+              <NavItem icon="☑️" label="See all chores" />
+            </Link>
 
-              {/* <button
-                style={{ display: "block" }}
-                onClick={() => {
-                  console.log(user);
-                }}
-              >
-                Print
-              </button> */}
-            </div>
-            <div className={style.copyright}>&copy; 2023 Chores App</div>
-            <div className={style.design}>
-              <p>Designed by:</p>
-              <p>Hairdynamics Team</p>
-              <p>(SEI 75)</p>
-            </div>
+            <button
+              style={{ display: "block" }}
+              onClick={() => {
+                console.log(user);
+              }}
+            >
+              Print
+            </button>
           </div>
+          <div className={style.copyright}>&copy; 2023 Chores App</div>
+          <div className={style.design}>
+            <p>Designed by:</p>
+            <p>Hairdynamics Team</p>
+            <p>(SEI 75)</p>
+          </div>
+        </div>
       )}
     </>
   );
