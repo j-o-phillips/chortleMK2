@@ -22,7 +22,6 @@ function Dashboard() {
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/household/${user.households[0]}/chores`
       );
       const data = await response.json();
-      console.log(data.chores);
       setChores(data.chores);
     } catch (error) {
       console.log(error);

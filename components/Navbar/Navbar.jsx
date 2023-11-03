@@ -23,8 +23,8 @@ function Navbar() {
 
   return (
     <nav className={style.nav}>
-      <div className={style.hello}>SEI-75</div>
-      {/* <Image  src="/_next/static/media/chortleman.png" width={60 } height={6} alt="chortleman" className={style.logo}></Image> */}
+      <div className={style.hello} width='auto' >Choretle
+      </div>
       {session.status === "authenticated" && (
         <div className={style.end}>
           {showUserName && <h4 className={style.userName}>{session.data.user.name}</h4>}
