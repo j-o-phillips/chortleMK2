@@ -5,7 +5,7 @@ import { UserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-function members() {
+function Members() {
   const session = useSession();
   const [memberEmail, setMemberEmail] = useState("");
   const [membersList, setMembersList] = useState([]);
@@ -49,7 +49,7 @@ function members() {
             body: JSON.stringify({ email: memberEmail }),
           }
         );
-        router.push(`/${user.households[0]}`)
+        router.push(`/${user.households[0]}`);
 
         if (res.ok) {
           const response = await res.json();
@@ -174,4 +174,4 @@ function members() {
   }
 }
 
-export default members;
+export default Members;
