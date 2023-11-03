@@ -29,31 +29,38 @@ function members() {
   //* Adding New Members
   async function AddMember(e) {
     e.preventDefault();
-    if (!memberEmail) {
-      alert("Email required");
-      return;
-    }
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}/members`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ email: memberEmail }),
-        }
-      );
+    const userConfirmed = window.confirm(
+      "Are you sure you want to add this member to your household?"
+    );
 
-      if (res.ok) {
-        const response = await res.json();
-        // await setHousehold(response.household);
-        // router.push(`/${response.household._id}`);
-      } else {
-        throw new Error("Failed to add a new member");
+    if (userConfirmed) {
+      if (!memberEmail) {
+        alert("Email required");
+        return;
       }
-    } catch (error) {
-      console.log(error);
+      try {
+        const res = await fetch(
+          `http://localhost:3000/api/household/${user.households[0]}/members`,
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({ email: memberEmail }),
+          }
+        );
+        router.push(`/${user.households[0]}`)
+
+        if (res.ok) {
+          const response = await res.json();
+          // await setHousehold(response.household);
+          // router.push(`/${response.household._id}`);
+        } else {
+          throw new Error("Failed to add a new member");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -64,24 +71,23 @@ function members() {
     );
 
     if (userConfirmed) {
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}/members`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ memberId }),
-        }
-      );
-      const response = await res.json();
-      console.log(response);
-    } catch (error) {
-      console.error(error);
+      try {
+        await fetch(
+          `http://localhost:3000/api/household/${user.households[0]}/members`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({ memberId }),
+          }
+        );
+        router.push(`/${user.households[0]}`);
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-}
 
   async function handleRenameHousehold(e) {
     e.preventDefault();
@@ -90,23 +96,23 @@ function members() {
     );
 
     if (userConfirmed) {
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/household/${user.households[0]}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ householdNameInput }),
-        }
-      );
-      router.push(`/${user.households[0]}`);
-    } catch (error) {
-      console.error(error);
+      try {
+        await fetch(
+          `http://localhost:3000/api/household/${user.households[0]}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({ householdNameInput }),
+          }
+        );
+        router.push(`/${user.households[0]}`);
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-}
 
   //* Checks if a user is logged in
   if (session.status === "loading") {

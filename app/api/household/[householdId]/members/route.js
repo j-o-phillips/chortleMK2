@@ -56,7 +56,6 @@ export async function GET(req, { params }) {
     const { householdId } = params;
     await connectMongoDB();
     const members = await User.find({ households: householdId });
-    console.log(members);
     return NextResponse.json({ members });
   } catch (error) {
     NextResponse.error(error);
@@ -66,9 +65,7 @@ export async function GET(req, { params }) {
 //remove members from household
 export async function PUT(req, { params }) {
   const { householdId } = params;
-  console.log(householdId);
   const { memberId } = await req.json();
-  console.log(memberId);
   //remove member from household
   await Household.updateOne(
     { _id: householdId },
