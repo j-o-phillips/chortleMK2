@@ -3,7 +3,6 @@ import User from "@/models/users";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  console.log("route hit");
   const { name, email, imgURL, households } = await req.json();
   await connectMongoDB();
   const user = await User.find({ email: email });
@@ -11,7 +10,6 @@ export async function POST(req) {
   if (!user[0]) {
     //If the user doesn't exist
     const user = await User.create({ name, email, imgURL, households });
-    console.log(user);
     return NextResponse.json(
       { message: "User Created", redirect: "/createHousehold", user: user },
       { status: 201 }

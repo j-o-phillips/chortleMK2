@@ -2,7 +2,6 @@ import Household from "@/models/household";
 import User from "@/models/users";
 import connectMongoDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 //Update household name
 export async function PUT(req, { params }) {

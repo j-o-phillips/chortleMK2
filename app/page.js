@@ -1,5 +1,4 @@
 "use client";
-import Hero from "public/cleaning.png";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { signIn, useSession } from "next-auth/react";
@@ -23,7 +22,6 @@ function Login() {
             imgURL: session.data.user.image,
             households: [],
           };
-          // console.log(data);
           const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`, {
             method: "POST",
             headers: {
@@ -32,7 +30,6 @@ function Login() {
             body: JSON.stringify(data),
           });
           const response = await res.json();
-          // console.log(response);
           if (res.ok) {
             setUser(response.user);
             router.push(response.redirect);
@@ -40,7 +37,6 @@ function Login() {
             throw new Error("Failed to create a user");
           }
         } catch (error) {
-          // console.log(error);
         }
       }
     }

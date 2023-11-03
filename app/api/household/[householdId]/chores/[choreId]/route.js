@@ -57,10 +57,8 @@ export async function DELETE(req, { params }) {
 ///
 export async function PUT(req, { params, body }) {
   try {
-    console.log("put hit");
     const { choreId } = params;
     const data = await req.json();
-    console.log(data);
     await connectMongoDB();
 
     const updatedChore = await Chore.findByIdAndUpdate(
