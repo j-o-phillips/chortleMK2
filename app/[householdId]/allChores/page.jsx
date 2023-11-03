@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-function allChores() {
+function AllChores() {
   const session = useSession();
   const router = useRouter();
   const { user } = useContext(UserContext);
@@ -26,7 +26,7 @@ function allChores() {
     }
   }
 
-  const getHouseholdData = async () => {
+  async function getHouseholdData() {
     try {
       const response = await fetch(
         `http://localhost:3000/api/household/${user.households[0]}`
@@ -41,11 +41,11 @@ function allChores() {
     } catch (error) {
       console.error("Error fetching household data", error);
     }
-  };
+  }
 
-  const handleDeleteChore = (choreId) => {
+  function handleDeleteChore(choreId) {
     setChores(chores.filter((chore) => chore._id !== choreId));
-  };
+  }
 
   useEffect(() => {
     getChores();
@@ -90,4 +90,4 @@ function allChores() {
   }
 }
 
-export default allChores;
+export default AllChores;
