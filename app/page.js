@@ -22,13 +22,16 @@ function Login() {
             imgURL: session.data.user.image,
             households: [],
           };
-          const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`, {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`,
+            {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }
+          );
           const response = await res.json();
           if (res.ok) {
             setUser(response.user);
@@ -36,8 +39,7 @@ function Login() {
           } else {
             throw new Error("Failed to create a user");
           }
-        } catch (error) {
-        }
+        } catch (error) {}
       }
     }
 
@@ -51,15 +53,17 @@ function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
+        <h1>Hello</h1>
         <LoginBtn />
       </div>
       <div className={styles.item}>
-        <Image        
-        src="/_next/static/media/cleaning.e35c6e32.png"
-        alt="Cleaning"
-        width={500}
-        height={300}
-        priority={true} />
+        <Image
+          src="/_next/static/media/cleaning.e35c6e32.png"
+          alt="Cleaning"
+          width={500}
+          height={300}
+          priority={true}
+        />
       </div>
     </div>
   );
