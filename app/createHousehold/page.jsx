@@ -55,7 +55,7 @@ function CreateHousehold() {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleCreateHousehold}>
+      <form onSubmit={handleCreateHousehold} className={styles.form}>
         <input
           className={styles.input}
           type="text"

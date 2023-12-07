@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-div.main-container {
-  display: grid;
-  height: 93vh;
-  grid-template-columns: 1fr 5fr;
+body {
   background-color: #886cc9;
 }
 
@@ -18,9 +15,7 @@ div.main-container {
   width: max-content;
   color: white;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
-}
-.button:hover {
-  background-color: #546a7c;
+  position: relative;
 }
 
 div.main {

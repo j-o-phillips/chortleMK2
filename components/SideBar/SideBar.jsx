@@ -15,6 +15,7 @@ function SideBar() {
             <Link href={`/${user.households[0]}`}>
               <NavItem icon="🏠" label="My Household" />
             </Link>
+
             <Link
               style={{ display: "block" }}
               href={`/${user.households[0]}/members`}
@@ -34,12 +35,6 @@ function SideBar() {
               <NavItem icon="☑️" label="See all chores" />
             </Link>
           </div>
-          <div className={style.copyright}>&copy; 2023 Chores App</div>
-          <div className={style.design}>
-            <p>Designed by:</p>
-            <p>Hairdynamics Team</p>
-            <p>(SEI 75)</p>
-          </div>
         </div>
       )}
     </>
@@ -49,15 +44,14 @@ function SideBar() {
 const NavItem = ({ icon, label }) => (
   <div
     style={{
-      marginBottom: "10px",
-      backgroundColor: "beige",
+      backgroundColor: "#886cc9",
       borderRadius: "5px",
       padding: "7px",
-      paddingRight: "10px",
+      color: "white",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      width: "14vw",
+      width: "180px",
     }}
   >
     <span style={{ marginRight: "10px" }}>{icon}</span>
