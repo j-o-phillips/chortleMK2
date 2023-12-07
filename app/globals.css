@@ -6,17 +6,18 @@ div.main-container {
   display: grid;
   height: 93vh;
   grid-template-columns: 1fr 5fr;
-  background-color: #faf9f8;
+  background-color: #886cc9;
 }
 
 .button {
   padding: 10px;
   cursor: pointer;
-  background-color: #7c96ab;
+  background-color: #200087;
   border: none;
   border-radius: 5px;
   width: max-content;
   color: white;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
 }
 .button:hover {
   background-color: #546a7c;

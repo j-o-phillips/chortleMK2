@@ -51,20 +51,18 @@ function Login() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.waveContainer}>
       <div className={styles.item}>
-        <h1>Hello</h1>
-        <LoginBtn />
+        <h1 className={styles.title}>Welcome to Chortle!</h1>
+        <p className={styles.desc}>
+          {" "}
+          Organize and track your household chores with your family
+        </p>
+        <div className={styles.login}>
+          <LoginBtn />
+        </div>
       </div>
-      <div className={styles.item}>
-        <Image
-          src="/_next/static/media/cleaning.e35c6e32.png"
-          alt="Cleaning"
-          width={500}
-          height={300}
-          priority={true}
-        />
-      </div>
+      <div className={styles.wave}></div>
     </div>
   );
 }

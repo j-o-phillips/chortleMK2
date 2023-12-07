@@ -1,9 +1,27 @@
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 1/3;
-  height: 100vh;
+.waveContainer {
+  height: 50vh;
+  background-color: #5025b6;
+  position: relative;
+  width: 100vw;
+}
+
+.wave {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -0.3%;
+  left: 0;
+  background-size: auto;
+  background-repeat: repeat no-repeat;
+  background-position: 26vw bottom;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1200  120' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 88L50 83C100 77 200 66 300 45C400 23 500 -9 600 2C700 12 800 66 900 88C1000 110 1100 99 1150 93L1200 88V120H1150C1100 120 1000 120 900 120C800 120 700 120 600 120C500 120 400 120 300 120C200 120 100 120 50 120H0V88Z' fill='%23886cc9'/></svg>");
+}
+
+@media (max-width: 850px) {
+  .wave-container::before {
+    height: 45.5px;
+  }
 }
 
 .item {
@@ -11,8 +29,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: 100%;
+}
+
+.title {
+  color: white;
+  font-size: 7vmin;
+}
+
+.desc {
+  color: white;
+  font-size: 2.5vmin;
+  margin-top: 25px;
+}
+
+.login {
+  position: absolute;
+  bottom: -30%;
 }
 
 .button {
