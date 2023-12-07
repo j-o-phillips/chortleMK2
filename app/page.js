@@ -46,10 +46,6 @@ function Login() {
     createUser();
   });
 
-  if (session.status === "loading") {
-    return <p>loading...</p>;
-  }
-
   return (
     <div className={styles.waveContainer}>
       <div className={styles.item}>
