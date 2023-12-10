@@ -1,0 +1,35 @@
+.container {
+  justify-content: center;
+}
+.sidebar {
+  display: flex;
+  width: 100vw;
+  background-color: #5025b6;
+  text-align: center;
+}
+
+.icons {
+  gap: 13px;
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+.copyright {
+  position: absolute;
+  font-size: 15px;
+  bottom: 45px;
+  text-align: center;
+  color: #888;
+  padding-bottom: 5px;
+}
+.design {
+  text-align: center;
+  position: absolute;
+  font-size: 11px;
+  bottom: 2px;
+  color: #888;
+}

@@ -9,12 +9,17 @@ const choreSchema = new Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
     },
+    household: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Household',
+    },
+    completed: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   }
 );
 
-const Chore = mongoose.model("Chore", choreSchema);
+const Chore = mongoose.models.Chore || mongoose.model("Chore", choreSchema);
 
-export { Chore, choreSchema };
+export default Chore;

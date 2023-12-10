@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { choreSchema } from "./chores";
+
 
 const householdSchema = new Schema(
   {
@@ -9,13 +9,17 @@ const householdSchema = new Schema(
       ref: "User",
       required: true,
     },
-    chores: [choreSchema],
+    chores: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Chore',
+      },
   },
   {
     timestamps: true,
   }
 );
 
-const Household = mongoose.model("Household", householdSchema);
+const Household =
+  mongoose.models.Household || mongoose.model("Household", householdSchema);
 
 export default Household;

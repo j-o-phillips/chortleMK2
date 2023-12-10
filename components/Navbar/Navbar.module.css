@@ -1,0 +1,25 @@
+.nav {
+  background-color: #886cc9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+  height: 60px;
+}
+
+.end {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  border-radius: 50%;
+  height: 50px;
+  margin: 15px;
+}
+
+.hello {
+  font-size: 30px;
+  margin-left: 5%;
+  color: white;
+}

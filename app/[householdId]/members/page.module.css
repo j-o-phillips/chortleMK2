@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input {
+  border: 1px solid lightgrey;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.button {
+  padding: 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: max-content;
+  color: white;
+  margin-left: 10px;
+}
+
+.title {
+  font-size: 2em;
+  text-align: center;
+  margin: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.edit {
+  margin: 2vmin 0;
+}
+.subtitle {
+  font-size: 1.3em;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
