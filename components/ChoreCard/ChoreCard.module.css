@@ -2,15 +2,15 @@
   border: 1px solid lightgrey;
   border-radius: 10px;
   margin: 0 10px 10px 10px;
-  width: calc(50% - 20px);
+  width: 300px;
   display: inline-block;
   box-sizing: border-box;
 }
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .card {
-    width: calc(33.33% - 20px); 
+    width: calc(33.33% - 20px);
   }
-}
+} */
 
 .h3 {
   border-bottom: 1px solid lightgray;
@@ -55,7 +55,7 @@
 .delete {
   padding: 10px;
   cursor: pointer;
-  background-color: #fd0909;
+  background-color: #200087;
   border: none;
   border-radius: 5px;
   width: max-content;
@@ -64,12 +64,12 @@
   margin-left: 3px;
 }
 .delete:hover {
-  background-color: rgb(136, 4, 4);
+  background-color: #2901ad;
 }
 .markDone {
   padding: 10px;
   cursor: pointer;
-  background-color: #7c96ab;
+  background-color: #200087;
   border: none;
   border-radius: 5px;
   width: max-content;
@@ -78,7 +78,7 @@
 }
 
 .markDone:hover {
-  background-color: green;
+  background-color: #2901ad;
 }
 
 .completed {

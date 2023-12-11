@@ -82,21 +82,22 @@ function Dashboard() {
             {/* <div className={style.household}>Household</div> */}
           </div>
           <h1 className={style.h1}>Household Chores</h1>
-
-          {sortedChores.map((chore) => {
-            if (!chore.completed) {
-              return (
-                <ChoreCard
-                  key={chore._id}
-                  data={chore}
-                  householdId={user.households[0]}
-                  onDeleteChore={handleDeleteChore}
-                  onMarkAsDone={handleMarkAsDone}
-                />
-              );
-            }
-            return null;
-          })}
+          <div className={style.choreCont}>
+            {sortedChores.map((chore) => {
+              if (!chore.completed) {
+                return (
+                  <ChoreCard
+                    key={chore._id}
+                    data={chore}
+                    householdId={user.households[0]}
+                    onDeleteChore={handleDeleteChore}
+                    onMarkAsDone={handleMarkAsDone}
+                  />
+                );
+              }
+              return null;
+            })}
+          </div>
         </div>
       </>
     );
