@@ -274,7 +274,7 @@ These were my key takeaways for this project:
 
 ## Future Improvements
 
-- I am quite unhappy with the UI. None of us really focussed on this area, and some early bad decisions on the layout make it more difficult to address now. I would like to redesign the whole UI and make it responsive
+- I am quite unhappy with the UI. None of us really focussed on this area, and some early bad decisions on the layout make it more difficult to address now. I would like to redesign the whole UI and make it responsive (EDIT: Layout is now responsive and design has been moderately improved)
 - I would like to add an invitation system to email other users with an invitation to your household
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
