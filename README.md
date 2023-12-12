@@ -132,8 +132,8 @@ The following was the General Assembly requirements for this project:
 
 As a team of three fathers, we decided to build an app that would be useful to us and our families, so we settled on a chore tracking app. We used Miro to plan our database and organise the features of our app into priorities and ‘nice to haves’. We also decided to spend the first morning working together to organise the structure of our app, then split off to work on specific parts individually.
 
-[![User Story 1 Screen Shot][user1-screenshot]]
-[![User Story 2 Screen Shot][user2-screenshot]]
+![User Story 1 Screen Shot][user1-screenshot]
+![User Story 2 Screen Shot][user2-screenshot]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -293,7 +293,7 @@ Distributed under the MIT License.
 
 Jake Phillips - jphillips@gmail.com
 
-Portfolio Link: [Portfolio](https://github.com/jake-o-phillips/spaceacademy-backend)
+Portfolio Link: [Portfolio](https://jakephillips.eu)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
